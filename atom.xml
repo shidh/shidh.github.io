@@ -2,15 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2014-11-28T20:31:36+01:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://shidh.github.io/atom.xml" rel="self"/>
+  <link href="http://shidh.github.io/"/>
+  <updated>2014-11-28T20:39:25+01:00</updated>
+  <id>http://shidh.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Allen Shi]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[First Blog]]></title>
+    <link href="http://shidh.github.io/blog/2014/11/28/first-blog/"/>
+    <updated>2014-11-28T20:38:31+01:00</updated>
+    <id>http://shidh.github.io/blog/2014/11/28/first-blog</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>
