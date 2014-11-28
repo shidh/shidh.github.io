@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://shidh.github.io/atom.xml" rel="self"/>
-  <link href="http://shidh.github.io/"/>
-  <updated>2014-11-28T20:49:15+01:00</updated>
-  <id>http://shidh.github.io/</id>
+  <title><![CDATA[搜不狗]]></title>
+  <link href="http://www.sobugou.com/atom.xml" rel="self"/>
+  <link href="http://www.sobugou.com/"/>
+  <updated>2014-11-28T21:53:03+01:00</updated>
+  <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[First Blog]]></title>
-    <link href="http://shidh.github.io/blog/2014/11/28/first-blog/"/>
+    <link href="http://www.sobugou.com/blog/2014/11/28/first-blog/"/>
     <updated>2014-11-28T20:38:31+01:00</updated>
-    <id>http://shidh.github.io/blog/2014/11/28/first-blog</id>
+    <id>http://www.sobugou.com/blog/2014/11/28/first-blog</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>

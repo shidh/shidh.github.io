@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://shidh.github.io/sitemap.xml 
+Sitemap: http://www.sobugou.com/sitemap.xml 
