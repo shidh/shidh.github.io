@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[搜不狗]]></title>
-  <link href="http://www.sobugou.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Blog, | 搜不狗]]></title>
+  <link href="http://www.sobugou.com/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
   <updated>2014-11-29T21:29:58+01:00</updated>
   <id>http://www.sobugou.com/</id>
@@ -42,54 +42,33 @@
 
 <h3>高亮一段代码<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></h3>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nd">@requires_authorization</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">SomeClass</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">pass</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class='line'>    <span class="c"># A comment</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;hello world&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre><code class="python">@requires_authorization
+class SomeClass:
+    pass
 
+if __name__ == '__main__':
+    # A comment
+    print 'hello world'
+</code></pre>
 
 <h3>高效绘制 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#7-%E6%B5%81%E7%A8%8B%E5%9B%BE">流程图</a></h3>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">st</span><span class="o">=&gt;</span><span class="n">start</span><span class="p">:</span> <span class="n">Start</span>
-</span><span class='line'><span class="n">op</span><span class="o">=&gt;</span><span class="n">operation</span><span class="p">:</span> <span class="n">Your</span> <span class="n">Operation</span>
-</span><span class='line'><span class="n">cond</span><span class="o">=&gt;</span><span class="n">condition</span><span class="p">:</span> <span class="n">Yes</span> <span class="ow">or</span> <span class="n">No</span><span class="err">?</span>
-</span><span class='line'><span class="n">e</span><span class="o">=&gt;</span><span class="n">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">st</span><span class="o">-&gt;</span><span class="n">op</span><span class="o">-&gt;</span><span class="n">cond</span>
-</span><span class='line'><span class="n">cond</span><span class="p">(</span><span class="n">yes</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">e</span>
-</span><span class='line'><span class="n">cond</span><span class="p">(</span><span class="n">no</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">op</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre><code>st=&gt;start: Start
+op=&gt;operation: Your Operation
+cond=&gt;condition: Yes or No?
+e=&gt;end
 
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op
+</code></pre>
 
 <h3>高效绘制 <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#8-%E5%BA%8F%E5%88%97%E5%9B%BE">序列图</a></h3>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>        <span class="n">Alice</span><span class="o">-&gt;</span><span class="n">Bob</span><span class="p">:</span> <span class="n">Hello</span> <span class="n">Bob</span><span class="p">,</span> <span class="n">how</span> <span class="n">are</span> <span class="n">you</span><span class="err">?</span>
-</span><span class='line'>        <span class="n">Note</span> <span class="n">right</span> <span class="n">of</span> <span class="n">Bob</span><span class="p">:</span> <span class="n">Bob</span> <span class="n">thinks</span>
-</span><span class='line'>        <span class="n">Bob</span><span class="o">--&gt;</span><span class="n">Alice</span><span class="p">:</span> <span class="n">I</span> <span class="n">am</span> <span class="n">good</span> <span class="n">thanks</span><span class="err">!</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>            Alice-&gt;Bob: Hello Bob, how are you?
+            Note right of Bob: Bob thinks
+            Bob--&gt;Alice: I am good thanks!
+</code></pre>
 
 <h3>绘制表格</h3>
 
