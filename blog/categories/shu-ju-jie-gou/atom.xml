@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 数据结构 | 搜不狗]]></title>
+  <link href="http://www.sobugou.com/blog/categories/shu-ju-jie-gou/atom.xml" rel="self"/>
+  <link href="http://www.sobugou.com/"/>
+  <updated>2015-08-29T07:54:04+02:00</updated>
+  <id>http://www.sobugou.com/</id>
+  <author>
+    <name><![CDATA[Allen Shi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HashMap的原理总结]]></title>
+    <link href="http://www.sobugou.com/blog/2015/08/28/hashmapde-yuan-li-zong-jie/"/>
+    <updated>2015-08-28T17:59:57+02:00</updated>
+    <id>http://www.sobugou.com/blog/2015/08/28/hashmapde-yuan-li-zong-jie</id>
+    <content type="html"><![CDATA[<p>我们知道HashMap拥有高读取性能，the hash-map has O(1) access with <strong>high probability</strong> （注意是最理想情况是O(1)，但是相比O(n)更接近O(1)）。高读取性能数据结构背后具体是怎么实现的呢，这篇笔记就一起来总结下。</p>
+
+<p>Basically, a hash table is an array containing all of the keys to search on. The position of each key in the array is determined by the <em>hash function</em>, which can be any function which always maps the same input to the same output.</p>
+
+<h3>hashcode() and equals() 方法</h3>
+
+<p>参考原文地址：<a href="http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html">http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html</a></p>
+
+<p>These methods can be found in the Object class and hence available to all java classes. Using these two methods, an object can be stored or retrieved from a Hashtable, HashMap or HashSet.</p>
+
+<ol>
+<li><p><strong>hashcode():</strong>
+You might know if you put entry in HashMap, first hashcode is calculated and this hashcode used to find bucket(index) where this entry will get stored in hashMap.You can read more at How hashMap works in java. What if you don&rsquo;t override hashcode method, it will return integer representation of memory address.</p></li>
+<li><p><strong>equals():</strong>
+You have to override equals method, when you want to define equality between two object. If you don&rsquo;t override this method, it will check for reference equality(==) i.e. if tow reference refers to same object or not.</p></li>
+</ol>
+
+
+<h3>HashMap的结构java实现</h3>
+]]></content>
+  </entry>
+  
+</feed>
