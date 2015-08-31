@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hashmap | 搜不狗]]></title>
   <link href="http://www.sobugou.com/blog/categories/hashmap/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-08-31T18:28:45+02:00</updated>
+  <updated>2015-08-31T18:53:18+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -37,8 +37,7 @@
 
 <p>碰撞的概率还跟当前空间中已经被映射的点的数量有关，存入hash的元素越多，碰撞概率就越大。给定k个球，随机放入n个盒子，在相同盒子里面的球的期望个数也会增大。</p>
 
-<p>　　
-我们知道HashMap拥有高读取性能，the hash-map has O(1) access with <strong>high probability</strong> （注意是最理想情况是O(1)，但是相比O(n)更接近O(1)）。高读取性能数据结构背后具体是怎么实现的呢，这篇笔记就一起来总结下。</p>
+<p>我们知道HashMap拥有高读取性能，the hash-map has O(1) access with <strong>high probability</strong> （注意是最理想情况是O(1)，但是相比O(n)更接近O(1)）。高读取性能数据结构背后具体是怎么实现的呢，这篇笔记就一起来总结下。</p>
 
 <h2>hash方法</h2>
 
