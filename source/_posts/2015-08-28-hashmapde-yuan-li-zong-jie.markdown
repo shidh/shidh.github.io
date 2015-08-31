@@ -6,21 +6,154 @@ comments: true
 categories:  HashMap 数据结构
 ---
 
+数据结构中有数组和链表来实现对数据的存储，但这两者基本上是两个极端。
 
+###数组
+数组存储区间是连续的，占用内存严重，故空间复杂的很大。但数组的二分查找时间复杂度小，为O(1)；数组的特点是：寻址容易，插入和删除困难；
+
+###链表
+链表存储区间离散，占用内存比较宽松，故空间复杂度很小，但时间复杂度很大，达O（N）。链表的特点是：寻址困难，插入和删除容易。
+
+###哈希表
+那么我们能不能综合两者的特性，做出一种寻址容易，插入删除也容易的数据结构？答案是肯定的，这就是我们要提起的哈希表。哈希表（(Hash table）既满足了数据的查找方便，同时不占用太多的内容空间，使用也十分方便。　　
+　　
 我们知道HashMap拥有高读取性能，the hash-map has O(1) access with **high probability** （注意是最理想情况是O(1)，但是相比O(n)更接近O(1)）。高读取性能数据结构背后具体是怎么实现的呢，这篇笔记就一起来总结下。
 
-Basically, a hash table is an array containing all of the keys to search on. The position of each key in the array is determined by the *hash function*, which can be any function which always maps the same input to the same output.
 
-### hashcode() and equals() 方法
-参考原文地址：http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html
+## hashcode() and equals() 方法
+
+
+由于HashMap的实现又依赖于hashcode() and equals()方法，先根据一个博客来整理下这两个继承于Object的方法。参考原文地址：http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html
 
 These methods can be found in the Object class and hence available to all java classes. Using these two methods, an object can be stored or retrieved from a Hashtable, HashMap or HashSet.
 
 1. **hashcode():**
- You might know if you put entry in HashMap, first hashcode is calculated and this hashcode used to find bucket(index) where this entry will get stored in hashMap.You can read more at How hashMap works in java. What if you don't override hashcode method, it will return integer representation of memory address.
+>You might know if you put entry in HashMap, first hashcode is calculated and this hashcode used to find bucket(index) where this entry will get stored in hashMap.You can read more at How hashMap works in java. What if you don't override hashcode method, it will return integer representation of memory address.
+如果不重写的话，hashcode方法会返回类实例的内存地址的整形值。
 
+ Country类重写例子：
+
+``` Java
+@Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+``` 
 
 2. **equals():**
-  You have to override equals method, when you want to define equality between two object. If you don't override this method, it will check for reference equality(==) i.e. if tow reference refers to same object or not.
+ >The equals method implements an equivalence relation on non-null object references.
+Read more at http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html#dXUX4kIP1gRjcrGt.99 You have to override equals method, when you want to define equality between two object. If you don't override this method, it will check for reference equality(==) i.e. if tow reference refers to same object or not.
 
-### HashMap的结构java实现
+  如果想比较两个对象，就必须重写equals方法。否则这个方法默认是比较实例对象的堆引用，等同于 “==” 必然就会导致不同。所以可以推测String类一定重写了equals方法。
+  
+  
+ Country类重写例子：
+  
+``` Java
+  @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Country other = (Country) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
+``` 
+ 
+### Key points to remember:
+
+>- If you are overriding equals method then you should override hashcode() also.
+- If two objects are equal then they must have same hashcode.
+- If two objects have same hashcode then they may or may not be equal
+- Always use same attributes to generate equals and hashcode as in our case we have used name.
+
+总结来说，两个对象相等他们一定拥有相同的hashcode，但是相同的邀请码并不能说对象也相等。
+
+
+## HashMap的结构Java实现
+在java中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap也不例外。HashMap实际上是一个“链表散列”的数据结构，即数组和链表的结合体。
+
+![HashMap](/Users/allen/code/shidh.github.io.broken/source/images/2015-09/hashMap.jpg "HashMap在Java中结构")
+
+
+>Basically, a hash table is an array containing all of the keys to search on. The position of each key in the array is determined by the *hash function*, which can be any function which always maps the same input to the same output.
+
+哈希表hashmap<key, value>就是一个数组装着所有的key. 这些key的位置是通过Object类的*hash function*来判断的，*hash function*会把同样的输入映射到同样的输出。
+
+
+>So when we insert something into the hash table, we use the hash function (let's call it h) to find the location where to put it, and put it there. Now we insert another thing, hashing and storing. And another. Each time we insert data, it takes O(1) time to insert it (since the hash function is O(1).
+
+插入时候性能是O(1)。
+
+>Looking up data is the same. If we want to find a value, x, we have only to find out h(x), which tells us where x is located in the hash table. So we can look up any hash value in O(1) as well.
+
+查询也是O(1)。
+
+>Now to the lie: The above is a very nice theory with one problem: what if we insert data and there is already something in that position of the array? There is nothing which guarantees that the hash function won't produce the same output for two different inputs (unless you have a perfect hash function, but those are tricky to produce). Therefore, when we insert we need to take one of two strategies:
+
+但是在显示中我们很难有完美的Hash函数保证没有碰撞的，即不同的输入hash后的输出一样。为了解决这个问题一般用下面两种方案：
+
+- Store multiple values at each spot in the array (say, each array slot has a linked list). Now when you do a lookup, it is still O(1) to arrive at the correct place in the array, but potentially a linear search down a (hopefully short) linked list. This is called "separate chaining".
+
+每个数组里面存一个linked list，当查询key的位置的时候还是O(1),但是可能会有碰撞的值，要在查找这个linked list。这个是最常用的一种方法—— 拉链法，我们可以理解为“链表的数组”。
+
+![HashMap](/Users/allen/code/shidh.github.io.broken/source/images/2015-09/HashMap_LinkList.jpeg "HashMap在Java中结构")
+
+
+  
+``` Java
+ 
+     //The table, resized as necessary. Length MUST Always be a power of two.
+     
+    transient Entry[] table;
+
+    static class Entry<K,V> implements Map.Entry<K,V> {
+        final K key;
+        V value;
+        Entry<K,V> next;
+        final int hash;
+    }
+``` 
+	
+可以看出，Entry就是数组中的元素，每个 Map.Entry 其实就是一个key-value对，它持有一个指向下一个元素的引用，这就构成了链表。
+
+
+
+
+
+
+
+
+- If you find something is already there, hash again and find another location. Repeat until you find an empty spot, and put it there. The lookup procedure can follow the same rules to find the data. Now it's still O(1) to get to the first location, but there is a potentially (hopefully short) linear search to bounce around the table till you find the data you are after. This is called "open addressing".
+
+领一种方法就不细分析，原理是如果hash碰撞了就再hash一下，意思是hash的hash来得到其他的地址。
+
+
+Basically, both approaches are still mostly O(1) but with a hopefully-short linear sequence. We can assume for most purposes that it is O(1). If the hash table is getting too full, those linear searches can become longer and longer, and then it is time to "re-hash" which means to create a new hash table of a much bigger size and insert all the data back into it.
+
+如果Hash表快满的时候，插入和查找性能就会变差，因为碰撞会变多。这个时候（假如默认数组是16长度，那么插满0.75*16=12的时候就触发）就要resize整个hash表，就是扩大数组，把原来的Entry都重新hash一遍。非常消耗性能。
+
+
+
+##参考链接
+<http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7u40-b43/java/util/HashMap.java?av=f>
+
+<http://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html>
+
+<http://stackoverflow.com/questions/4363539/how-does-hashing-have-an-o1-search-time>
+
+<http://zhangshixi.iteye.com/blog/672697>
+
+
+<http://blog.csdn.net/vking_wang/article/details/14166593>
