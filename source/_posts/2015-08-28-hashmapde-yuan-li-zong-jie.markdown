@@ -84,7 +84,7 @@ Read more at http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java
 ## HashMap的结构Java实现
 在java中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap也不例外。HashMap实际上是一个“链表散列”的数据结构，即数组和链表的结合体。
 
-![HashMap](/Users/allen/code/shidh.github.io.broken/source/images/2015-09/hashMap.jpg "HashMap在Java中结构")
+![HashMap]({{ root_url }}/source/images/2015-09/hashMap.jpg "HashMap在Java中结构")
 
 
 >Basically, a hash table is an array containing all of the keys to search on. The position of each key in the array is determined by the *hash function*, which can be any function which always maps the same input to the same output.
