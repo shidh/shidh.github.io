@@ -9,7 +9,7 @@
   <meta name="author" content="Allen Shi">
 
   
-  <meta name="description" content="数据结构中有数组和链表来实现对数据的存储，但这两者基本上是两个极端。 数组 数组存储区间是连续的，占用内存严重，故空间复杂的很大。但数组的二分查找时间复杂度小，为O(1)；数组的特点是：寻址容易，插入和删除困难； 链表 链表存储区间离散，占用内存比较宽松，故空间复杂度很小，但时间复杂度很大，达O（ &hellip;">
+  <meta name="description" content="我们知道HashMap拥有高读取性能，the hash-map has O(1) access with high probability （注意是最理想情况是O(1)，但是相比O(n)更接近O(1)）。高读取性能数据结构背后具体是怎么实现的呢，这篇笔记就一起来总结下。 缘起 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,7 +87,11 @@
   </header>
 
 
-<div class="entry-content"><p>数据结构中有数组和链表来实现对数据的存储，但这两者基本上是两个极端。</p>
+<div class="entry-content"><p>我们知道HashMap拥有高读取性能，the hash-map has O(1) access with <strong>high probability</strong> （注意是最理想情况是O(1)，但是相比O(n)更接近O(1)）。高读取性能数据结构背后具体是怎么实现的呢，这篇笔记就一起来总结下。</p>
+
+<h2>缘起</h2>
+
+<p>数据结构中有数组和链表来实现对数据的存储，但这两者基本上是两个极端。</p>
 
 <h3>数组</h3>
 
@@ -105,8 +109,6 @@
 <strong>把k个球随机放入n个盒子，碰撞次数定义为有球的总数k减去有球的盒的个数（当然，不同存储结构有所不同）</strong>。</p>
 
 <p>碰撞的概率还跟当前空间中已经被映射的点的数量有关，存入hash的元素越多，碰撞概率就越大。给定k个球，随机放入n个盒子，在相同盒子里面的球的期望个数也会增大。</p>
-
-<p>我们知道HashMap拥有高读取性能，the hash-map has O(1) access with <strong>high probability</strong> （注意是最理想情况是O(1)，但是相比O(n)更接近O(1)）。高读取性能数据结构背后具体是怎么实现的呢，这篇笔记就一起来总结下。</p>
 
 <h2>hash方法</h2>
 
@@ -374,6 +376,8 @@ Read more at <a href="http://www.java2blog.com/2014/02/hashcode-and-equals-metho
         <a class="basic-alignment left" href="/blog/2014/11/28/first-blog/" title="Previous Post: How to use Markdown">&laquo; How to use Markdown</a>
       
       
+        <a class="basic-alignment right" href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/" title="Next Post: [转]HashMap实例：求Top K">[转]HashMap实例：求Top K &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -391,6 +395,10 @@ Read more at <a href="http://www.java2blog.com/2014/02/hashcode-and-equals-metho
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/">[转]HashMap实例：求Top K</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/28/hashmapde-yuan-li-zong-jie/">HashMap的原理总结</a>
