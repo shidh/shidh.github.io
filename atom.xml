@@ -4,7 +4,7 @@
   <title><![CDATA[搜不狗]]></title>
   <link href="http://www.sobugou.com/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-02T12:21:53+02:00</updated>
+  <updated>2015-09-02T12:31:08+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -35,6 +35,34 @@
 
 <p>比较排序可以更好地适应复杂顺序，例如浮点数。并且，一旦比较函数完成，任何比较算法都可以不经修改地使用；而<strong>非比较排序对数据类型的要求更严格。</strong> 这种灵活性和上述比较排序在现代计算机的执行效率一起导致了比较排序被更多地应用在了大多数实际工作中。</p>
 
+<h3>原始输入数据情况：</h3>
+
+<ul>
+<li>平均情况：Random</li>
+</ul>
+
+
+<blockquote><p>A random initial order is often used to evaluate sorting algorithms in order to elucidate the &ldquo;typical&rdquo; case</p></blockquote>
+
+<ul>
+<li>最好情况 Sorting nearly sorted</li>
+</ul>
+
+
+<blockquote><p>It is quite common in practice. Some observations:</p>
+
+<p>Insertion sort is the clear winner on this initial condition.
+Bubble sort is fast, but insertion sort has lower overhead.
+Shell sort is fast because it is based on insertion sort.
+Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></blockquote>
+
+<ul>
+<li>最坏情况 Reversed Initial Order</li>
+</ul>
+
+
+<blockquote><p>Sorting an array that is initially in reverse sorted order is an interesting case because it is common in practice and it brings out worse-case behavior for insertion sort, bubble sort, and shell sort.</p></blockquote>
+
 <h3>冒泡排序</h3>
 
 <ul>
@@ -43,7 +71,7 @@
 
 
 <p>时间复杂度O(n<sup>2</sup>), 空间复杂度O(1)， 稳定，因为存在两两比较，不存在跳跃。
-排序时间与输入无关，最好，最差，平均都是O(n<sup>2</sup>)</p>
+最好是O(n), 最差，平均都是O(n<sup>2</sup>)</p>
 
 <ul>
 <li>步骤</li>
