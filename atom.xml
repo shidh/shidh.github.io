@@ -4,7 +4,7 @@
   <title><![CDATA[搜不狗]]></title>
   <link href="http://www.sobugou.com/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-02T11:21:01+02:00</updated>
+  <updated>2015-09-02T12:02:07+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -18,7 +18,139 @@
     <link href="http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/"/>
     <updated>2015-09-02T11:00:43+02:00</updated>
     <id>http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie</id>
-    <content type="html"><![CDATA[<h3>一个展示排序过程的视频：</h3>
+    <content type="html"><![CDATA[<h2>比较排序算法</h2>
+
+<p>比较排序如其名，需要通过比较两个元素的大小来确定他们的前后序列。</p>
+
+<p><img src="http://www.sobugou.com/images/comparisonSorts.jpg" alt="Comparison Sorting" /></p>
+
+<ul>
+<li><strong>性能限制和优势</strong></li>
+</ul>
+
+
+<p>比较排序有很多性能上的根本限制。在最差情况下，<strong>任何一种比较排序至少需要O(nlogn)比较操作</strong>.这是比较操作所获的信息有限所导致的，或者说是全序集的模糊代数结构所导致的。从这个意义上讲，归并排序，堆排序在他们必须比较的次数上是渐进最优的。 因此比较排序的最好情况为nlogn的复杂度。</p>
+
+<p>不过，<strong>比较排序在控制比较函数方面有显著优势</strong>，因此比较排序能对各种数据类型进行排序，并且可以很好地控制一个序列如何被排序。例如，如果倒置比较函数的输出结果可以让排序结果倒置。或者可以构建一个按字典顺序排序的比较函数，这样排序的结果就是按字典顺序的。</p>
+
+<p>比较排序可以更好地适应复杂顺序，例如浮点数。并且，一旦比较函数完成，任何比较算法都可以不经修改地使用；而<strong>非比较排序对数据类型的要求更严格。</strong> 这种灵活性和上述比较排序在现代计算机的执行效率一起导致了比较排序被更多地应用在了大多数实际工作中。</p>
+
+<h3>冒泡排序</h3>
+
+<ul>
+<li>性能分析</li>
+</ul>
+
+
+<p>时间复杂度O(n<sup>2</sup>), 空间复杂度O(1)， 稳定，因为存在两两比较，不存在跳跃。
+排序时间与输入无关，最好，最差，平均都是O(n<sup>2</sup>)</p>
+
+<ul>
+<li>步骤</li>
+</ul>
+
+
+<p>1 比较相邻的元素。如果第一个比第二个大，就交换他们两个。</p>
+
+<p>2 对第0个到第n-1个数据做同样的工作。这时，最大的数就“浮”到了数组最后的位置上。</p>
+
+<p>3 针对所有的元素重复以上的步骤，除了最后一个。</p>
+
+<p>4 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</p>
+
+<ul>
+<li>核心代码</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'> <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">arraytoSort</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+</span><span class='line'>        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">arraytoSort</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="n">j</span><span class="o">&gt;=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span><span class="n">j</span><span class="o">--){</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">temp</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">if</span><span class="o">(</span><span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">]&lt;</span><span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">])</span>
+</span><span class='line'>            <span class="o">{</span>
+</span><span class='line'>                <span class="n">temp</span> <span class="o">=</span> <span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+</span><span class='line'>                <span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+</span><span class='line'>                <span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<ul>
+<li>延伸</li>
+</ul>
+
+
+<p>冒泡排序缺陷：</p>
+
+<ul>
+<li><p>某一趟遍历如果没有数据交换，则说明已经排好序了，因此不用再进行迭代了。用一个标记记录这个状态即可。设置一个flag位, 如果一趟无元素交换，则 flag = 0; 以后再也不进入第二层循环。</p></li>
+<li><p>当排序的数据比较多时排序的时间会明显延长，因为会比较 n*(n-1)/2次。</p></li>
+</ul>
+
+
+<p>Python实现的优化方案： <a href="https://github.com/wuchong/Algorithm-Interview/blob/master/Sort/python/BubbleSort.py">https://github.com/wuchong/Algorithm-Interview/blob/master/Sort/python/BubbleSort.py</a></p>
+
+<ul>
+<li><strong>排序所需的比较次数</strong></li>
+</ul>
+
+
+<p>当n是所需排序的元素个数时，比较排序所需的比较次数按nlog(n)比例增加。</p>
+
+<h3>堆排序</h3>
+
+<h3>快速排序</h3>
+
+<h2>非比较排序算法</h2>
+
+<p><img src="http://www.sobugou.com/images/non-comparisonSorts.jpg" alt="Non-comparison Sorting" /></p>
+
+<p>非比较排序算法通过非比较操作能在O(n)完成，这使他们能够回避O(nlogn)这个下界（假设元素是定值）。</p>
+
+<h3>桶排序 BucketSort</h3>
+
+<h3>计数排序 CountingSort</h3>
+
+<h3>基数排序 RadixSort</h3>
+
+<h2>stability</h2>
+
+<blockquote><p>A sorting algorithm is stable if whenever there are two records R and S with the same key, and R appears before S in the original list, then R will always appear before S in the sorted list.</p></blockquote>
+
+<p>一个典型的例子就是排序扑克牌，在排序前的扑克序列里，梅花4在红桃4前面，排序后顺序不变。如果是non-stable sort，排序后顺序调换。</p>
+
+<ul>
+<li><p>选择排序、快速排序、希尔排序、堆排序不是稳定的排序算法，</p></li>
+<li><p>冒泡排序、插入排序、归并排序和基数排序是稳定的排序算法。</p></li>
+<li><p>常用时间复杂度的大小关系：</p>
+
+<pre><code>O(1)&lt;O(logn)&lt;O(n)&lt;O(nlogn)&lt;O(n2)&lt;O(n3)&lt;O(2n)&lt;O(n!)&lt;O(nn)
+</code></pre></li>
+</ul>
+
+
+<h2>参考链接</h2>
+
+<p><a href="http://segmentfault.com/a/1190000002595152#articleHeader30">http://segmentfault.com/a/1190000002595152#articleHeader30</a></p>
+
+<p><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/">http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/</a></p>
+
+<h3>一个展示排序过程的视频：</h3>
 
 <p><a href="http://v.youku.com/v_show/id_XNTkwNzI5OTIw.html">http://v.youku.com/v_show/id_XNTkwNzI5OTIw.html</a></p>
 
@@ -33,9 +165,9 @@
 <p>其中，</p>
 
 <ul>
-<li><p>列。是代表每一个排序算法，有“插入”“选择”“冒泡”“Shell”，“合并Merge”，“堆排序”，“快速排序”，“快速3排序”。单击每个一算法的链接，你可以看到这个算法的详细解释，其中包括，算法的伪代码，算法的复杂度，相关的讨论，重点，以及该算法的相关参考文档。</p></li>
-<li><p>行。是不同的数据样本，第一个是“随机样本”，第二个是“几乎排好序的样本”，第三个是“最差的样本（反序）”，第四个是“有一些相同项的样本”。这些样本在不同的算法上都会有不同的表现。</p></li>
-<li><p>单元格。每个单元格都是一个图片。简单的用鼠标单击一下每个图片，可以动画地演示算法整个过程。其中两个小红箭头表示了正在需要“交换顺序的数据”。</p></li>
+<li><p><strong>列。</strong>是代表每一个排序算法，有“插入”“选择”“冒泡”“Shell”，“合并Merge”，“堆排序”，“快速排序”，“快速3排序”。单击每个一算法的链接，你可以看到这个算法的详细解释，其中包括，算法的伪代码，算法的复杂度，相关的讨论，重点，以及该算法的相关参考文档。</p></li>
+<li><p><strong>行。</strong>是不同的数据样本，第一个是“随机样本”，第二个是“几乎排好序的样本”，第三个是“最差的样本（反序）”，第四个是“有一些相同项的样本”。这些样本在不同的算法上都会有不同的表现。</p></li>
+<li><p><strong>单元格。</strong>每个单元格都是一个图片。简单的用鼠标单击一下每个图片，可以动画地演示算法整个过程。其中两个小红箭头表示了正在需要“交换顺序的数据”。</p></li>
 </ul>
 
 ]]></content>
