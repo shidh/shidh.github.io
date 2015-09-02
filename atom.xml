@@ -4,7 +4,7 @@
   <title><![CDATA[搜不狗]]></title>
   <link href="http://www.sobugou.com/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-02T12:02:07+02:00</updated>
+  <updated>2015-09-02T12:03:37+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[常见Sorting算法总结]]></title>
+    <title type="html"><![CDATA[常见排序算法总结]]></title>
     <link href="http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/"/>
     <updated>2015-09-02T11:00:43+02:00</updated>
     <id>http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie</id>
