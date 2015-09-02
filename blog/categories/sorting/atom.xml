@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sorting, | 搜不狗]]></title>
   <link href="http://www.sobugou.com/blog/categories/sorting/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-02T12:05:58+02:00</updated>
+  <updated>2015-09-02T12:21:53+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -22,7 +22,7 @@
 
 <p>比较排序如其名，需要通过比较两个元素的大小来确定他们的前后序列。</p>
 
-<p><img src="/images/comparisonSorts.jpg" alt="Comparison Sorting" /></p>
+<p><img src="/images/2015-09/comparisonSorts.jpg" alt="Comparison Sorting" /></p>
 
 <ul>
 <li><strong>性能限制和优势</strong></li>
@@ -104,7 +104,7 @@
 
 <h2>非比较排序算法</h2>
 
-<p><img src="/images/non-comparisonSorts.jpg" alt="Non-comparison Sorting" /></p>
+<p><img src="/images/2015-09/non-comparisonSorts.jpg" alt="Non-comparison Sorting" /></p>
 
 <p>非比较排序算法通过非比较操作能在O(n)完成，这使他们能够回避O(nlogn)这个下界（假设元素是定值）。</p>
 
