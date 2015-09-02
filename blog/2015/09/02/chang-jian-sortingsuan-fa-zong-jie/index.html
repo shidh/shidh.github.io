@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - 搜不狗</title>
+  <title>常见Sorting算法总结 - 搜不狗</title>
   <meta name="author" content="Allen Shi">
 
   
-  <meta name="description" content="Blog Archive 2015 常见Sorting算法总结
-Sep 02 2015 posted in sorting,, 算法 [转]HashMap实例：求Top K
-Sep 01 2015 posted in hashmap, topk, 算法 HashMap的原理总结
-Aug 28 &hellip;">
+  <meta name="description" content="一个展示排序过程的视频： http://v.youku.com/v_show/id_XNTkwNzI5OTIw.html 一个展示排序网站： http://www.sorting-algorithms.com/ 当你打开先点击网页上方的Problem Size，选择一个尺寸，20，30， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ Aug 28 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.sobugou.com/blog/archives">
+  <link rel="canonical" href="http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="搜不狗" type="application/atom+xml">
@@ -67,81 +64,111 @@ Aug 28 &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">常见Sorting算法总结</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-02T11:00:43+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:00 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://www.sobugou.com">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><h3>一个展示排序过程的视频：</h3>
 
-  
-  <h2>2015</h2>
+<p><a href="http://v.youku.com/v_show/id_XNTkwNzI5OTIw.html">http://v.youku.com/v_show/id_XNTkwNzI5OTIw.html</a></p>
 
-<article>
-  
-<h1><a href="/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/">常见Sorting算法总结</a></h1>
-<time datetime="2015-09-02T11:00:43+02:00" pubdate><span class='month'>Sep</span> <span class='day'>02</span> <span class='year'>2015</span></time>
+<h3>一个展示排序网站：</h3>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/sorting/'>sorting,</a>, <a class='category' href='/blog/categories/suan-fa/'>算法</a></span>
-</footer>
+<p><a href="http://www.sorting-algorithms.com/">http://www.sorting-algorithms.com/</a></p>
 
+<p>当你打开先点击网页上方的Problem Size，选择一个尺寸，20，30，40还是50，于是你就可以看到下面整个大表中有图片显示出来了。如下所示：</p>
 
-</article>
+<p><img src="{url}/images/2015-09/sort.jpg" title="排序示例" alt="Sorting" /></p>
 
+<p>其中，</p>
 
-
-<article>
-  
-<h1><a href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/">[转]HashMap实例：求Top K</a></h1>
-<time datetime="2015-09-01T19:26:45+02:00" pubdate><span class='month'>Sep</span> <span class='day'>01</span> <span class='year'>2015</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/hashmap/'>hashmap</a>, <a class='category' href='/blog/categories/topk/'>topk</a>, <a class='category' href='/blog/categories/suan-fa/'>算法</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2015/08/28/hashmapde-yuan-li-zong-jie/">HashMap的原理总结</a></h1>
-<time datetime="2015-08-28T17:59:57+02:00" pubdate><span class='month'>Aug</span> <span class='day'>28</span> <span class='year'>2015</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/hashmap/'>hashmap</a>, <a class='category' href='/blog/categories/shu-ju-jie-gou/'>数据结构</a></span>
-</footer>
-
-
-</article>
-
-
-
-  
-  <h2>2014</h2>
-
-<article>
-  
-<h1><a href="/blog/2014/11/28/first-blog/">How to Use Markdown</a></h1>
-<time datetime="2014-11-28T20:38:31+01:00" pubdate><span class='month'>Nov</span> <span class='day'>28</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/markdown/'>markdown</a></span>
-</footer>
-
-
-</article>
+<ul>
+<li><p>列。是代表每一个排序算法，有“插入”“选择”“冒泡”“Shell”，“合并Merge”，“堆排序”，“快速排序”，“快速3排序”。单击每个一算法的链接，你可以看到这个算法的详细解释，其中包括，算法的伪代码，算法的复杂度，相关的讨论，重点，以及该算法的相关参考文档。</p></li>
+<li><p>行。是不同的数据样本，第一个是“随机样本”，第二个是“几乎排好序的样本”，第三个是“最差的样本（反序）”，第四个是“有一些相同项的样本”。这些样本在不同的算法上都会有不同的表现。</p></li>
+<li><p>单元格。每个单元格都是一个图片。简单的用鼠标单击一下每个图片，可以动画地演示算法整个过程。其中两个小红箭头表示了正在需要“交换顺序的数据”。</p></li>
+</ul>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Allen Shi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-09-02T11:00:43+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/sorting/'>sorting,</a>, <a class='category' href='/blog/categories/suan-fa/'>算法</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+  
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_like_tsina"></a>
+  </div>
+  <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1394432209835215" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+  
+
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/" title="Previous Post: [转]HashMap实例：求Top K">&laquo; [转]HashMap实例：求Top K</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -255,7 +282,10 @@ Aug 28 &hellip;">
       var disqus_shortname = 'disqus_wj6CMLpme6';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/';
+        var disqus_url = 'http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

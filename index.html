@@ -9,7 +9,7 @@
   <meta name="author" content="Allen Shi">
 
   
-  <meta name="description" content="问题描述 百度面试题： 搜索引擎会通过日志文件把用户每次检索使用的所有检索串都记录下来，每个查询串的长度为1-255字节。 假设目前有一千万个记录（这些查询串的重复度比较高，虽然总数是1千万，但如果除去重复后，不超过3百万个。一个查询串的重复度越高，说明查询它的用户越多，也就是越热门。）， &hellip;">
+  <meta name="description" content="一个展示排序过程的视频： http://v.youku.com/v_show/id_XNTkwNzI5OTIw.html 一个展示排序网站： http://www.sorting-algorithms.com/ 当你打开先点击网页上方的Problem Size，选择一个尺寸，20，30， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +71,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/">[转]HashMap实例：求Top K</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/">常见Sorting算法总结</a></h1>
     
     
       <p class="meta">
@@ -80,42 +80,38 @@
 
 
 
-<time class='entry-date' datetime='2015-09-01T19:26:45+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>7:26 pm</span></time>
+<time class='entry-date' datetime='2015-09-02T11:00:43+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:00 am</span></time>
         
-           | <a href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/#disqus_thread"
-             data-disqus-identifier="http://www.sobugou.com/blog/2015/09/01/hashmapshi-li-:qiu-top-k/">Comments</a>
+           | <a href="/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/#disqus_thread"
+             data-disqus-identifier="http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>问题描述</h2>
+  <div class="entry-content"><h3>一个展示排序过程的视频：</h3>
 
-<p>百度面试题：</p>
+<p><a href="http://v.youku.com/v_show/id_XNTkwNzI5OTIw.html">http://v.youku.com/v_show/id_XNTkwNzI5OTIw.html</a></p>
 
-<p> 搜索引擎会通过日志文件把用户每次检索使用的所有检索串都记录下来，每个查询串的长度为1-255字节。
-    假设目前有一千万个记录（这些查询串的重复度比较高，虽然总数是1千万，但如果除去重复后，不超过3百万个。一个查询串的重复度越高，说明查询它的用户越多，也就是越热门。），请你统计最热门的10个查询串，要求使用的内存不能超过1G。</p>
+<h3>一个展示排序网站：</h3>
 
-<h2>必备知识：</h2>
+<p><a href="http://www.sorting-algorithms.com/">http://www.sorting-algorithms.com/</a></p>
 
-<p>什么是哈希表？</p>
+<p>当你打开先点击网页上方的Problem Size，选择一个尺寸，20，30，40还是50，于是你就可以看到下面整个大表中有图片显示出来了。如下所示：</p>
 
-<blockquote><p>哈希表（Hash table，也叫散列表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。</p>
+<p><img src="{url}/images/2015-09/sort.jpg" title="排序示例" alt="Sorting" /></p>
 
-<p>哈希表hashtable(key，value) 的做法其实很简单，就是把Key通过一个固定的算法函数既所谓的哈希函数转换成一个整型数字，然后就将该数字对数组长度进行取余，取余结果就当作数组的下标，将value存储在以该数字为下标的数组空间里。</p>
+<p>其中，</p>
 
-<p>而当使用哈希表进行查询的时候，就是再次使用哈希函数将key转换为对应的数组下标，并定位到该空间获取value，如此一来，就可以充分利用到数组的定位性能进行数据定位（文章第二、三部分，会针对Hash表详细阐述）。</p></blockquote>
+<ul>
+<li><p>列。是代表每一个排序算法，有“插入”“选择”“冒泡”“Shell”，“合并Merge”，“堆排序”，“快速排序”，“快速3排序”。单击每个一算法的链接，你可以看到这个算法的详细解释，其中包括，算法的伪代码，算法的复杂度，相关的讨论，重点，以及该算法的相关参考文档。</p></li>
+<li><p>行。是不同的数据样本，第一个是“随机样本”，第二个是“几乎排好序的样本”，第三个是“最差的样本（反序）”，第四个是“有一些相同项的样本”。这些样本在不同的算法上都会有不同的表现。</p></li>
+<li><p>单元格。每个单元格都是一个图片。简单的用鼠标单击一下每个图片，可以动画地演示算法整个过程。其中两个小红箭头表示了正在需要“交换顺序的数据”。</p></li>
+</ul>
 
-<h2>问题解析：</h2>
-
-<p>要统计最热门查询，首先就是要统计每个Query出现的次数，然后根据统计结果，找出Top 10。所以我们可以基于这个思路分两步来设计该算法。
-    即，此问题的解决分为以下俩个步骤：</div>
+</div>
   
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/">Read on &rarr;</a>
-    </footer>
   
 
 
@@ -148,6 +144,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/">常见Sorting算法总结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/">[转]HashMap实例：求Top K</a>
       </li>
     
@@ -167,9 +167,10 @@
           <li class='category'><a href='/blog/categories/blog/'>blog (1)</a></li>
 <li class='category'><a href='/blog/categories/hashmap/'>hashmap (2)</a></li>
 <li class='category'><a href='/blog/categories/markdown/'>markdown (1)</a></li>
+<li class='category'><a href='/blog/categories/sorting-/'>sorting, (1)</a></li>
 <li class='category'><a href='/blog/categories/topk/'>topk (1)</a></li>
 <li class='category'><a href='/blog/categories/数据结构/'>数据结构 (1)</a></li>
-<li class='category'><a href='/blog/categories/算法/'>算法 (1)</a></li>
+<li class='category'><a href='/blog/categories/算法/'>算法 (2)</a></li>
 
       </ul>
 </section>
