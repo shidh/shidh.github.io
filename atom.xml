@@ -4,7 +4,7 @@
   <title><![CDATA[搜不狗]]></title>
   <link href="http://www.sobugou.com/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-02T12:31:08+02:00</updated>
+  <updated>2015-09-03T12:40:08+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -126,10 +126,15 @@ Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></b
 <p>冒泡排序缺陷：</p>
 
 <ul>
-<li><p>某一趟遍历如果没有数据交换，则说明已经排好序了，因此不用再进行迭代了。用一个标记记录这个状态即可。设置一个flag位, 如果一趟无元素交换，则 flag = 0; 以后再也不进入第二层循环。</p></li>
-<li><p>当排序的数据比较多时排序的时间会明显延长，因为会比较 n*(n-1)/2次。</p></li>
+<li>在排序过程中，执行完当前的第i趟排序后，可能数据已全部排序完备，但是程序无法判断是否完成排序，会继续执行剩下的(n-1-i)趟排序。解决方法： 设置一个flag位, 如果一趟无元素交换，则 flag = 0; 以后再也不进入第二层循环。</li>
 </ul>
 
+
+<h2>- 当排序的数据比较多时排序的时间会明显延长，因为会比较 n*(n-1)/2次。</h2>
+
+<blockquote><p>腾讯笔试题：线性表长度为10，在最坏的情况下，冒泡排序需要比较的次数为：40 42 44 45.</p>
+
+<p>答案是45。</p></blockquote>
 
 <p>Python实现的优化方案： <a href="https://github.com/wuchong/Algorithm-Interview/blob/master/Sort/python/BubbleSort.py">https://github.com/wuchong/Algorithm-Interview/blob/master/Sort/python/BubbleSort.py</a></p>
 
