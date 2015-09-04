@@ -132,7 +132,7 @@ Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></b
 
 <blockquote><p>Sorting an array that is initially in reverse sorted order is an interesting case because it is common in practice and it brings out worse-case behavior for insertion sort, bubble sort, and shell sort.</p></blockquote>
 
-<h3>冒泡排序</h3>
+<h3>冒泡排序 BubbleSort</h3>
 
 <ul>
 <li>性能分析</li>
@@ -171,21 +171,51 @@ Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></b
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'> <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">arraytoSort</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
-</span><span class='line'>        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">arraytoSort</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="n">j</span><span class="o">&gt;=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span><span class="n">j</span><span class="o">--){</span>
-</span><span class='line'>            <span class="kt">int</span> <span class="n">temp</span><span class="o">;</span>
-</span><span class='line'>            <span class="k">if</span><span class="o">(</span><span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">]&lt;</span><span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">])</span>
-</span><span class='line'>            <span class="o">{</span>
-</span><span class='line'>                <span class="n">temp</span> <span class="o">=</span> <span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-</span><span class='line'>                <span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
-</span><span class='line'>                <span class="n">arraytoSort</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BubbleSort</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span><span class="o">[]</span> <span class="n">number</span> <span class="o">=</span> <span class="o">{</span><span class="mi">95</span><span class="o">,</span><span class="mi">45</span><span class="o">,</span><span class="mi">15</span><span class="o">,</span><span class="mi">78</span><span class="o">,</span><span class="mi">84</span><span class="o">,</span><span class="mi">51</span><span class="o">,</span><span class="mi">24</span><span class="o">,</span><span class="mi">12</span><span class="o">};</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">number</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span> <span class="o">;</span> <span class="n">j</span><span class="o">++){</span>
+</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">number</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">number</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
+</span><span class='line'>                  <span class="n">temp</span> <span class="o">=</span> <span class="n">number</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+</span><span class='line'>                  <span class="n">number</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">number</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+</span><span class='line'>                  <span class="n">number</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+</span><span class='line'>              <span class="o">}</span> <span class="c1">//if end</span>
 </span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>          <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">number</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++){</span>
+</span><span class='line'>              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">number</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;loop:&quot;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
 </span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span> <span class="c1">//main end</span>
+</span><span class='line'><span class="o">}</span> <span class="c1">//BubbleSort end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p></p>
+
+<blockquote><p>45 15 78 84 51 24 12 95 loop:0</p>
+
+<p>15 45 78 51 24 12 84 95 loop:1</p>
+
+<p>15 45 51 24 12 78 84 95 loop:2</p>
+
+<p>15 45 24 12 51 78 84 95 loop:3</p>
+
+<p>15 24 12 45 51 78 84 95 loop:4</p>
+
+<p>15 12 24 45 51 78 84 95 loop:5</p>
+
+<p>12 15 24 45 51 78 84 95 loop:6</p></blockquote>
 
 <ul>
 <li>延伸</li>
@@ -195,11 +225,10 @@ Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></b
 <p>冒泡排序缺陷：</p>
 
 <ul>
-<li>在排序过程中，执行完当前的第i趟排序后，可能数据已全部排序完备，但是程序无法判断是否完成排序，会继续执行剩下的(n-1-i)趟排序。解决方法： 设置一个flag位, 如果一趟无元素交换，则 flag = 0; 以后再也不进入第二层循环。</li>
+<li><p>在排序过程中，执行完当前的第i趟排序后，可能数据已全部排序完备，但是程序无法判断是否完成排序，会继续执行剩下的(n-1-i)趟排序。解决方法： 设置一个flag位, 如果一趟无元素交换，则 flag = 0; 以后再也不进入第二层循环。</p></li>
+<li><p>当排序的数据比较多时排序的时间会明显延长，因为会比较 n*(n-1)/2次。</p></li>
 </ul>
 
-
-<h2>- 当排序的数据比较多时排序的时间会明显延长，因为会比较 n*(n-1)/2次。</h2>
 
 <blockquote><p>腾讯笔试题：线性表长度为10，在最坏的情况下，冒泡排序需要比较的次数为：40 42 44 45.</p>
 
@@ -214,9 +243,115 @@ Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></b
 
 <p>当n是所需排序的元素个数时，比较排序所需的比较次数按nlog(n)比例增加。</p>
 
-<h3>堆排序</h3>
+<h3>归并排序 MergeSort</h3>
 
-<h3>快速排序</h3>
+<p>归并排序是采用<strong>分治法</strong>的一个非常典型的应用。归并排序的思想就是<strong>先递归分解数组</strong>，再<strong>合并数组</strong>。1945年由约翰·冯·诺伊曼首次提出。</p>
+
+<p>先考虑合并两个有序数组，基本思路是比较两个数组的最前面的数，谁小就先取谁，取了后相应的指针就往后移一位。然后再比较，直至一个数组为空，最后把另一个数组的剩余部分复制过来即可。</p>
+
+<p>再考虑递归分解，基本思路是将数组分解成left和right，如果这两个数组内部数据是有序的，那么就可以用上面合并数组的方法将这两个数组合并排序。如何让这两个数组内部是有序的？可以再二分，直至分解出的小组只含有一个元素时为止，此时认为该小组内部已有序。然后合并排序相邻二个小组即可。</p>
+
+<p>归并排序的时间复杂度，合并耗费O(n)时间，而由<strong>完全二叉树的深度</strong>可知，整个归并排序需要进行log_2n次，因此，总的时间复杂度为 O(nlogn)，而且这是归并排序算法中最好、最坏、平均的时间性能。</p>
+
+<p>由于归并排序在归并过程中需要与原始记录序列同样数量的存储空间存放归并结果 以及 递归时深度为 log_2n 的栈空间，因此空间复杂度为O(n+logn)。</p>
+
+<p>另外，对代码进行仔细研究，发现 Merge 函数中有if (L[i]&lt;R[j]) 语句，这就说明它需要两两比较，不存在跳跃，因此归并排序是一种<strong>稳定</strong>的排序算法。</p>
+
+<p>也就是说，归并排序是一种比较占用内存，但却效率高且稳定的算法。</p>
+
+<ul>
+<li>核心代码</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span><span class="c1">//归并排序 --递归</span>
+</span><span class='line'>    <span class="k">if</span><span class="o">(</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">==</span><span class="mi">1</span><span class="o">){</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">half</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span>
+</span><span class='line'>    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">half</span><span class="o">];</span>
+</span><span class='line'>    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="n">half</span><span class="o">];</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">arr1</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">arr1</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">half</span><span class="o">,</span> <span class="n">arr2</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">arr1</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="o">(</span><span class="n">arr1</span><span class="o">);</span><span class="c1">//递归调用，排序前半段arry[start...mid]</span>
+</span><span class='line'>    <span class="n">arr2</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="o">(</span><span class="n">arr2</span><span class="o">);</span><span class="c1">//递归调用，排序后半段arry[mid+1,end]</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nf">mergeArray</span><span class="o">(</span><span class="n">arr1</span><span class="o">,</span><span class="n">arr2</span><span class="o">);</span> <span class="c1">//归并上述两段有序数组。</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">mergeArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="o">,</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="o">){</span><span class="c1">//归并排序子程序</span>
+</span><span class='line'>    <span class="kt">int</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">arr1</span><span class="o">.</span><span class="na">length</span><span class="o">+</span><span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>    <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">){</span>
+</span><span class='line'>        <span class="k">if</span><span class="o">(</span><span class="n">arr1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">arr2</span><span class="o">[</span><span class="n">j</span><span class="o">]){</span>
+</span><span class='line'>            <span class="n">result</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr1</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'>            <span class="k">if</span><span class="o">(++</span><span class="n">i</span><span class="o">&gt;</span><span class="n">arr1</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+</span><span class='line'>                <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span><span class='line'>            <span class="n">result</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr2</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+</span><span class='line'>            <span class="k">if</span><span class="o">(++</span><span class="n">j</span><span class="o">&gt;</span><span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+</span><span class='line'>                <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="n">k</span><span class="o">++;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">for</span><span class="o">(;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">arr1</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+</span><span class='line'>        <span class="n">result</span><span class="o">[++</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr1</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">for</span><span class="o">(;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">j</span><span class="o">++){</span>
+</span><span class='line'>        <span class="n">result</span><span class="o">[++</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr2</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h3>堆排序 HeapSort</h3>
+
+<h3>快速排序 QuickSort</h3>
 
 <h2>非比较排序算法</h2>
 
