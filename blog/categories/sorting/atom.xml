@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sorting, | 搜不狗]]></title>
   <link href="http://www.sobugou.com/blog/categories/sorting/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-04T17:27:01+02:00</updated>
+  <updated>2015-09-05T11:18:17+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -164,9 +164,11 @@ Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></b
 
 <p>由于归并排序在归并过程中需要与原始记录序列同样数量的存储空间存放归并结果 以及 递归时深度为 logn 的栈空间，因此空间复杂度为O(n+logn)。</p>
 
-<p>另外，对代码进行仔细研究，发现 Merge 函数中有if (L[i]&lt;R[j]) 语句，这就说明它需要两两比较，不存在跳跃，因此归并排序是一种<strong>稳定</strong>的排序算法。</p>
+<p>另外，对代码进行仔细研究，发现 Merge 函数中有if (arr1[i] &lt; arr2[j]) 语句，这就说明它需要两两比较，不存在跳跃，因此归并排序是一种<strong>稳定</strong>的排序算法。</p>
 
 <p>也就是说，归并排序是一种比较占用内存，但却效率高且稳定的算法。</p>
+
+<p><img src="/images/2015-09/mergeSort.gif" alt="Merge Sort" /></p>
 
 <ul>
 <li>核心代码</li>
@@ -216,6 +218,35 @@ private static int[] mergeArray(int[] arr1,int[] arr2){//归并排序子程序
 </code></pre>
 
 <h3>堆排序 HeapSort</h3>
+
+<p>堆排序借助了堆这个数据结构，堆类似二叉树，又具有堆积的性质（<strong>子节点的关键值总小于（大于）父节点</strong>）。堆排序是采用二叉堆的数据结构来实现的，虽然实质上还是一维数组。二叉堆是一个近似完全二叉树 。</p>
+
+<h4>二叉堆具有以下性质：</h4>
+
+<ul>
+<li>父节点的键值总是大于或等于（小于或等于）任何一个子节点的键值。</li>
+<li>每个节点的左右子树都是一个二叉堆（都是最大堆或最小堆）。</li>
+</ul>
+
+
+<h4>步骤：</h4>
+
+<ol>
+<li><p>构造最大堆（Build_Max_Heap）：若数组下标范围为0~n，考虑到单独一个元素是大根堆，则从下标n/2开始的元素均为大根堆。于是只要从n/2-1开始，向前依次构造大根堆，这样就能保证，构造到某个节点时，它的左右子树都已经是大根堆。 时间复杂度O(n)线性时间建堆。</p></li>
+<li><p>堆排序（HeapSort）：由于堆是用数组模拟的。得到一个大根堆后，数组内部并不是有序的。因此需要将堆化数组有序化。思想是移除根节点，并做最大堆调整的递归运算。第一次将heap[0]与heap[n-1]交换，再对heap[0&hellip;n-2]做最大堆调整。第二次将heap[0]与heap[n-2]交换，再对heap[0&hellip;n-3]做最大堆调整。重复该操作直至heap[0]和heap[1]交换。由于每次都是将最大的数并入到后面的有序区间，故操作完后整个数组就是有序的了。</p></li>
+<li><p>最大堆调整（Max_Heapify）：该方法是提供给上述两个过程调用的。目的是将堆的末端子节点作调整，使得子节点永远小于父节点 。从而保持堆的性质，时间复杂度O(logn)</p></li>
+</ol>
+
+
+<p>对于大数据的处理： 如果对100亿条数据选择Topk数据，选择快速排序好还是堆排序好？</p>
+
+<p>答案是只能用堆排序。 <strong>堆排序只需要维护一个k大小的空间，即在内存开辟k大小的空间。</strong>而快速排序需要开辟能存储100亿条数据的空间，which is impossible.</p>
+
+<ul>
+<li>堆这种数据结构的很好的应用是 优先级队列，如作业调度。
+最小堆排序动态过程参考这里<a href="http://www.benfrederickson.com/heap-visualization/">http://www.benfrederickson.com/heap-visualization/</a></li>
+</ul>
+
 
 <h3>快速排序 QuickSort</h3>
 
