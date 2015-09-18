@@ -6,7 +6,7 @@ url: http://www.sobugou.com
 title: 搜不狗
 subtitle: 记录学习工作点滴
 author: Allen Shi
-simple_search: https://www.google.com/search
+simple_search: https://www.google.com/search?q=site%3Asobugou.com
 description:
 encoding: utf-8
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -73,7 +73,7 @@ twitter_user:
 twitter_tweet_button: false
 
 # Google +1
-google_plus_one: true
+google_plus_one: false
 google_plus_one_size: medium
 
 weibo_share: true
@@ -93,11 +93,12 @@ delicious_count: 3
 
 # Disqus Comments
 disqus: true
-disqus_short_name: disqus_wj6CMLpme6
+disqus_short_name: sobugou
+#disqus_short_name: disqus_wj6CMLpme6
 disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:
 
 # Facebook Like
-facebook_like: true
+facebook_like: false
