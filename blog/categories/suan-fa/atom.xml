@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 算法 | 搜不狗]]></title>
   <link href="http://www.sobugou.com/blog/categories/suan-fa/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-19T11:39:17+02:00</updated>
+  <updated>2015-09-19T12:39:17+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -62,6 +62,9 @@ Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></b
 
 
 <blockquote><p>Sorting an array that is initially in reverse sorted order is an interesting case because it is common in practice and it brings out worse-case behavior for insertion sort, bubble sort, and shell sort.</p></blockquote>
+
+<!--more-->
+
 
 <h3>冒泡排序 BubbleSort</h3>
 
@@ -332,7 +335,10 @@ private static int[] mergeArray(int[] arr1,int[] arr2){//归并排序子程序
 <h2>问题解析：</h2>
 
 <p>要统计最热门查询，首先就是要统计每个Query出现的次数，然后根据统计结果，找出Top 10。所以我们可以基于这个思路分两步来设计该算法。
-    即，此问题的解决分为以下俩个步骤：<!--more--></p>
+    即，此问题的解决分为以下俩个步骤：</p>
+
+<!--more-->
+
 
 <h3>第一步：Query统计</h3>
 
