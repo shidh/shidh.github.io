@@ -9,7 +9,7 @@
   <meta name="author" content="Allen Shi">
 
   
-  <meta name="description" content="问题描述 百度面试题： 搜索引擎会通过日志文件把用户每次检索使用的所有检索串都记录下来，每个查询串的长度为1-255字节。 假设目前有一千万个记录（这些查询串的重复度比较高，虽然总数是1千万，但如果除去重复后，不超过3百万个。一个查询串的重复度越高，说明查询它的用户越多，也就是越热门。）， &hellip;">
+  <meta name="description" content="比较排序算法 比较排序如其名，需要通过比较两个元素的大小来确定他们的前后序列。 性能限制和优势 比较排序有很多性能上的根本限制。在最差情况下，任何一种比较排序至少需要O(nlogn)比较操作.这是比较操作所获的信息有限所导致的，或者说是全序集的模糊代数结构所导致的。从这个意义上讲，归并排序， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +71,86 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/">常见排序算法总结</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-02T11:00:43+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:00 am</span></time>
+        
+           | <a href="/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/#disqus_thread"
+             data-disqus-identifier="http://www.sobugou.com/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>比较排序算法</h2>
+
+<p>比较排序如其名，需要通过比较两个元素的大小来确定他们的前后序列。</p>
+
+<p><img src="/images/2015-09/comparisonSorts.jpg" alt="Comparison Sorting" /></p>
+
+<ul>
+<li><strong>性能限制和优势</strong></li>
+</ul>
+
+
+<p>比较排序有很多性能上的根本限制。在最差情况下，<strong>任何一种比较排序至少需要O(nlogn)比较操作</strong>.这是比较操作所获的信息有限所导致的，或者说是全序集的模糊代数结构所导致的。从这个意义上讲，归并排序，堆排序在他们必须比较的次数上是渐进最优的。 因此比较排序的最好情况为nlogn的复杂度。</p>
+
+<p>不过，<strong>比较排序在控制比较函数方面有显著优势</strong>，因此比较排序能对各种数据类型进行排序，并且可以很好地控制一个序列如何被排序。例如，如果倒置比较函数的输出结果可以让排序结果倒置。或者可以构建一个按字典顺序排序的比较函数，这样排序的结果就是按字典顺序的。</p>
+
+<p>比较排序可以更好地适应复杂顺序，例如浮点数。并且，一旦比较函数完成，任何比较算法都可以不经修改地使用；而<strong>非比较排序对数据类型的要求更严格。</strong> 这种灵活性和上述比较排序在现代计算机的执行效率一起导致了比较排序被更多地应用在了大多数实际工作中。</p>
+
+<h3>原始输入数据情况：</h3>
+
+<ul>
+<li>平均情况：Random</li>
+</ul>
+
+
+<blockquote><p>A random initial order is often used to evaluate sorting algorithms in order to elucidate the &ldquo;typical&rdquo; case</p></blockquote>
+
+<ul>
+<li>最好情况 Sorting nearly sorted</li>
+</ul>
+
+
+<blockquote><p>It is quite common in practice. Some observations:</p>
+
+<p>Insertion sort is the clear winner on this initial condition.
+Bubble sort is fast, but insertion sort has lower overhead.
+Shell sort is fast because it is based on insertion sort.
+Merge sort, heap sort, and quick sort do not adapt to nearly sorted data.</p></blockquote>
+
+<ul>
+<li>最坏情况 Reversed Initial Order</li>
+</ul>
+
+
+<blockquote><p>Sorting an array that is initially in reverse sorted order is an interesting case because it is common in practice and it brings out worse-case behavior for insertion sort, bubble sort, and shell sort.</p></blockquote>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/02/chang-jian-sortingsuan-fa-zong-jie/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/09/01/hashmapshi-li-:qiu-top-k/">[转]HashMap实例：求Top K</a></h1>
     
     
@@ -123,273 +203,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/28/hashmapde-yuan-li-zong-jie/">HashMap的原理总结</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-28T17:59:57+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:59 pm</span></time>
-        
-           | <a href="/blog/2015/08/28/hashmapde-yuan-li-zong-jie/#disqus_thread"
-             data-disqus-identifier="http://www.sobugou.com/blog/2015/08/28/hashmapde-yuan-li-zong-jie/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我们知道HashMap拥有高读取性能，the hash-map has O(1) access with <strong>high probability</strong> （注意是最理想情况是O(1)，但是相比O(n)更接近O(1)）。高读取性能数据结构背后具体是怎么实现的呢，这篇笔记就一起来总结下。</p>
-
-<h2>缘起</h2>
-
-<p>数据结构中有数组和链表来实现对数据的存储，但这两者基本上是两个极端。</p>
-
-<h3>数组</h3>
-
-<p>数组存储区间是连续的，占用内存严重，故空间复杂的很大。但数组的二分查找时间复杂度小，为O(1)；数组的特点是：<strong>寻址容易</strong>，插入和删除困难；</p>
-
-<h3>链表</h3>
-
-<p>链表存储区间离散，占用内存比较宽松，故空间复杂度很小，但时间复杂度很大，达O（N）。链表的特点是：寻址困难，<strong>插入和删除容易</strong>。</p>
-
-<h3>哈希表</h3>
-
-<p>那么我们能不能综合两者的特性，做出一种寻址容易，插入删除也容易的数据结构？答案是肯定的，这就是我们要提起的哈希表。哈希表（(Hash table）既满足了数据的查找方便，同时不占用太多的内容空间，使用也十分方便。　　</p>
-
-<p>在一个随机性良好的hash函数的情况下，hash模型基本和以下问题一致：
-<strong>把k个球随机放入n个盒子，碰撞次数定义为有球的总数k减去有球的盒的个数（当然，不同存储结构有所不同）</strong>。</p>
-
-<p>碰撞的概率还跟当前空间中已经被映射的点的数量有关，存入hash的元素越多，碰撞概率就越大。给定k个球，随机放入n个盒子，在相同盒子里面的球的期望个数也会增大。</p>
-
-<h2>hash方法</h2>
-
-<p>元素特征转变为数组下标的方法就是散列法。散列法当然不止一种，下面列出三种比较常用的：</p>
-
-<p>1, 除法散列法
-最直观的一种，上图使用的就是这种散列法，公式：
-      index = value % 16
-学过汇编的都知道，求模数其实是通过一个除法运算得到的，所以叫“除法散列法”。</p>
-
-<p>2, 平方散列法
-求index是非常频繁的操作，而乘法的运算要比除法来得省时（对现在的CPU来说，估计我们感觉不出来），所以我们考虑把除法换成乘法和一个位移操作。公式：</p>
-
-<pre><code>index = (value * value) &gt;&gt; 28   （右移，除以2^28。记法：左移变大，是乘。右移变小，是除。）
-</code></pre>
-
-<p>如果数值分配比较均匀的话这种方法能得到不错的结果，但我上面画的那个图的各个元素的值算出来的index都是0——非常失败。也许你还有个问题，value如果很大，value * value不会溢出吗？答案是会的，但我们这个乘法不关心溢出，因为我们根本不是为了获取相乘结果，而是为了获取index。</p>
-
-<p>3, 斐波那契（Fibonacci）散列法</p>
-
-<p>平方散列法的缺点是显而易见的，所以我们能不能找出一个理想的乘数，而不是拿value本身当作乘数呢？答案是肯定的。</p>
-
-<ul>
-<li>对于16位整数而言，这个乘数是40503</li>
-<li>对于32位整数而言，这个乘数是2654435769</li>
-<li>对于64位整数而言，这个乘数是11400714819323198485</li>
-</ul>
-
-
-<p>这几个“理想乘数”是如何得出来的呢？这跟一个法则有关，叫黄金分割法则，而描述黄金分割法则的最经典表达式无疑就是著名的斐波那契数列，即如此形式的序列：0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610， 987, 1597, 2584, 4181, 6765, 10946，…。另外，斐波那契数列的值和太阳系八大行星的轨道半径的比例出奇吻合。</p>
-
-<p>对我们常见的32位整数而言，公式：</p>
-
-<pre><code>index = (value * 2654435769) &gt;&gt; 28
-</code></pre>
-
-<h2>hashcode() and equals() 方法</h2>
-
-<p>由于HashMap的实现又依赖于hashcode() and equals()方法，先根据一个博客来整理下这两个继承于Object的方法。参考原文地址：<a href="http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html">http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html</a></p>
-
-<p>These methods can be found in the Object class and hence available to all java classes. Using these two methods, an object can be stored or retrieved from a Hashtable, HashMap or HashSet.</p>
-
-<ol>
-<li><strong>hashcode():</strong>
-
-<blockquote><p>You might know if you put entry in HashMap, first hashcode is calculated and this hashcode used to find bucket(index) where this entry will get stored in hashMap.You can read more at How hashMap works in java. What if you don&rsquo;t override hashcode method, it will return integer representation of memory address.
-如果不重写的话，hashcode方法会返回类实例的内存地址的整形值。</p></blockquote></li>
-</ol>
-
-
-<p> Country类重写例子：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'><span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kd">final</span> <span class="kt">int</span> <span class="n">prime</span> <span class="o">=</span> <span class="mi">31</span><span class="o">;</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">result</span> <span class="o">=</span> <span class="n">prime</span> <span class="o">*</span> <span class="n">result</span> <span class="o">+</span> <span class="o">((</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">name</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<ol>
-<li><strong>equals():</strong>
-
-<blockquote><p>The equals method implements an equivalence relation on non-null object references.
-Read more at <a href="http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html#dXUX4kIP1gRjcrGt.99">http://www.java2blog.com/2014/02/hashcode-and-equals-method-in-java.html#dXUX4kIP1gRjcrGt.99</a> You have to override equals method, when you want to define equality between two object. If you don&rsquo;t override this method, it will check for reference equality(==) i.e. if tow reference refers to same object or not.</p></blockquote></li>
-</ol>
-
-
-<p>  如果想比较两个对象，就必须重写equals方法。否则这个方法默认是比较实例对象的堆引用，等同于 “==” 必然就会导致不同。所以可以推测String类一定重写了equals方法。</p>
-
-<p> Country类重写例子：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">obj</span><span class="o">)</span>
-</span><span class='line'>            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-</span><span class='line'>            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">getClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">obj</span><span class="o">.</span><span class="na">getClass</span><span class="o">())</span>
-</span><span class='line'>            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">Country</span> <span class="n">other</span> <span class="o">=</span> <span class="o">(</span><span class="n">Country</span><span class="o">)</span> <span class="n">obj</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">name</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-</span><span class='line'>                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">(!</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">name</span><span class="o">))</span>
-</span><span class='line'>            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-</span><span class='line'>        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<h3>Key points to remember:</h3>
-
-<blockquote><ul>
-<li>If you are overriding equals method then you should override hashcode() also.</li>
-<li>If two objects are equal then they must have same hashcode.</li>
-<li>If two objects have same hashcode then they may or may not be equal</li>
-<li>Always use same attributes to generate equals and hashcode as in our case we have used name.</li>
-</ul>
-</blockquote>
-
-<p>总结来说，两个对象相等他们一定拥有相同的hashcode，但是相同的邀请码并不能说对象也相等。</p>
-
-<h2>HashMap的结构Java实现</h2>
-
-<p>在java中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap也不例外。HashMap实际上是一个“链表散列”的数据结构，即数组和链表的结合体。</p>
-
-<p><img src="/images/2015-09/hashMap.jpg" title="HashMap在Java中结构" alt="HashMap" /></p>
-
-<blockquote><p>Basically, a hash table is an array containing all of the keys to search on. The position of each key in the array is determined by the <em>hash function</em>, which can be any function which always maps the same input to the same output.</p></blockquote>
-
-<p>哈希表hashmap&lt;key, value>就是一个数组装着所有的key. 这些key的位置是通过Object类的<em>hash function</em>来判断的，<em>hash function</em>会把同样的输入映射到同样的输出。</p>
-
-<blockquote><p>So when we insert something into the hash table, we use the hash function (let&rsquo;s call it h) to find the location where to put it, and put it there. Now we insert another thing, hashing and storing. And another. Each time we insert data, it takes O(1) time to insert it (since the hash function is O(1).</p></blockquote>
-
-<p>插入时候性能是O(1)。</p>
-
-<blockquote><p>Looking up data is the same. If we want to find a value, x, we have only to find out h(x), which tells us where x is located in the hash table. So we can look up any hash value in O(1) as well.</p></blockquote>
-
-<p>查询也是O(1)。</p>
-
-<blockquote><p>Now to the lie: The above is a very nice theory with one problem: what if we insert data and there is already something in that position of the array? There is nothing which guarantees that the hash function won&rsquo;t produce the same output for two different inputs (unless you have a perfect hash function, but those are tricky to produce). Therefore, when we insert we need to take one of two strategies:</p></blockquote>
-
-<p>但是在显示中我们很难有完美的Hash函数保证没有碰撞的，即不同的输入hash后的输出一样。为了解决这个问题一般用下面两种方案：</p>
-
-<ul>
-<li>Store multiple values at each spot in the array (say, each array slot has a linked list). Now when you do a lookup, it is still O(1) to arrive at the correct place in the array, but potentially a linear search down a (hopefully short) linked list. This is called &ldquo;separate chaining&rdquo;.</li>
-</ul>
-
-
-<p>每个数组里面存一个linked list，当查询key的位置的时候还是O(1),但是可能会有碰撞的值，要在查找这个linked list。这个是最常用的一种方法—— 拉链法，我们可以理解为“链表的数组”。</p>
-
-<p><img src="/images/2015-09/HashMap_LinkList.jpeg" title="HashMap在Java中结构" alt="HashMap" /></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='Java'><span class='line'>
-</span><span class='line'>     <span class="c1">//The table, resized as necessary. Length MUST Always be a power of two.</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">transient</span> <span class="n">Entry</span><span class="o">[]</span> <span class="n">table</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kd">final</span> <span class="n">K</span> <span class="n">key</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">V</span> <span class="n">value</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
-</span><span class='line'>        <span class="kd">final</span> <span class="kt">int</span> <span class="n">hash</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>可以看出，Entry就是数组中的元素，每个 Map.Entry 其实就是一个key-value对，它持有一个指向下一个元素的引用，这就构成了链表。</p>
-
-<ul>
-<li>If you find something is already there, hash again and find another location. Repeat until you find an empty spot, and put it there. The lookup procedure can follow the same rules to find the data. Now it&rsquo;s still O(1) to get to the first location, but there is a potentially (hopefully short) linear search to bounce around the table till you find the data you are after. This is called &ldquo;open addressing&rdquo;.</li>
-</ul>
-
-
-<p>领一种方法就不细分析，原理是如果hash碰撞了就再hash一下，意思是hash的hash来得到其他的地址。</p>
-
-<p>Basically, both approaches are still mostly O(1) but with a hopefully-short linear sequence. We can assume for most purposes that it is O(1). If the hash table is getting too full, those linear searches can become longer and longer, and then it is time to &ldquo;re-hash&rdquo; which means to create a new hash table of a much bigger size and insert all the data back into it.</p>
-
-<p>如果Hash表快满的时候，插入和查找性能就会变差，因为碰撞会变多。这个时候（假如默认数组是16长度，那么插满0.75*16=12的时候就触发）就要resize整个hash表，就是扩大数组，把原来的Entry都重新hash一遍。非常消耗性能。</p>
-
-<h2>参考链接</h2>
-
-<p><a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7u40-b43/java/util/HashMap.java?av=f">http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7u40-b43/java/util/HashMap.java?av=f</a></p>
-
-<p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html">http://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html</a></p>
-
-<p><a href="http://stackoverflow.com/questions/4363539/how-does-hashing-have-an-o1-search-time">http://stackoverflow.com/questions/4363539/how-does-hashing-have-an-o1-search-time</a></p>
-
-<p><a href="http://zhangshixi.iteye.com/blog/672697">http://zhangshixi.iteye.com/blog/672697</a></p>
-
-<p><a href="http://blog.csdn.net/vking_wang/article/details/14166593">http://blog.csdn.net/vking_wang/article/details/14166593</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -419,6 +232,10 @@ Read more at <a href="http://www.java2blog.com/2014/02/hashcode-and-equals-metho
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">java.util.ConcurrentModificationException总结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/16/mei-di-b1-slash-b2lu-you-shang-wu-10nian-qian-zong-jie/">美帝B1/B2旅游商务10年签总结</a>
       </li>
     
@@ -432,10 +249,6 @@ Read more at <a href="http://www.java2blog.com/2014/02/hashcode-and-equals-metho
     
       <li class="post">
         <a href="/blog/2015/08/28/hashmapde-yuan-li-zong-jie/">HashMap的原理总结</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/28/first-blog/">How to Use Markdown</a>
       </li>
     
   </ul>

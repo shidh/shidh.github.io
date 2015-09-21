@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>搜不狗</title>
+  <title>java.util.ConcurrentModificationException总结 - 搜不狗</title>
   <meta name="author" content="Allen Shi">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.sobugou.com">
+  <link rel="canonical" href="http://www.sobugou.com/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="搜不狗" type="application/atom+xml">
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">java.util.ConcurrentModificationException总结</a></h1>
+      <h1 class="entry-title">java.util.ConcurrentModificationException总结</h1>
     
     
       <p class="meta">
@@ -82,15 +79,15 @@
 
 <time class='entry-date' datetime='2015-09-21T17:03:32+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>5:03 pm</span></time>
         
-           | <a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/#disqus_thread"
-             data-disqus-identifier="http://www.sobugou.com/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://www.sobugou.com">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>Exception描述</h2>
+<div class="entry-content"><h2>Exception描述</h2>
 
 <p>今天又一次发现这个bug，印象原来有发生过这个问题，但是当时没有细细总结现在又发生了。这次就好好总结下，深入理解其中的原理。</p>
 
@@ -185,76 +182,71 @@
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Allen Shi</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-09-21T17:03:32+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>5:03 pm</span></time>
+      
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2015/09/16/mei-di-b1-slash-b2lu-you-shang-wu-10nian-qian-zong-jie/">美帝B1/B2旅游商务10年签总结</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-16T20:52:05+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:52 pm</span></time>
-        
-           | <a href="/blog/2015/09/16/mei-di-b1-slash-b2lu-you-shang-wu-10nian-qian-zong-jie/#disqus_thread"
-             data-disqus-identifier="http://www.sobugou.com/blog/2015/09/16/mei-di-b1-slash-b2lu-you-shang-wu-10nian-qian-zong-jie/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>由于一直非常向往去美帝走走，特别是一直看了高晓松的《晓说》和《晓松奇谈》被洗脑。感觉美帝的制度值得去亲身体验下，另外个人也是做IT的对硅谷特别向往。</p>
-
-<h1>必备材料：</h1>
-
-<ol>
-<li>D160确认信</li>
-<li>预约确认信</li>
-<li>护照照片（1张，5cmX5cm）</li>
-<li>护照</li>
-</ol>
-
-
-<h2>D160表格</h2>
-
-<p>表格是在线填写：<a href="https://ceac.state.gov/genniv/">https://ceac.state.gov/genniv/</a>
-这个表格非常关键，要求填写很多个人信息。填的时候可以用鼠标悬停提示，有中文可选。<a href="http://bbs.tigtag.com/thread-549281-1-1.html">这里</a>有一份中文的填写指南，可以帮助。</p>
-
-<p>这个表格填的时候30分钟会自动登出，所以填一半记得保存下。然后填表的时候要上传一个照片，白底，2X2寸正方形的照片。 小林同学帮我在家照的，但是最后还是不行，因为眼睛反光了。然后在大使馆里面用5欧的自动照相机照的。</p>
-
-<p>据说这个表格系统会自动识别分析，基本过不过应该这个表就有答案。我猜是会给签字官一个置信区间的建议吧，哈哈。</p>
+      <div class="sharing">
+  
+  
+  
+  
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/16/mei-di-b1-slash-b2lu-you-shang-wu-10nian-qian-zong-jie/">Read on &rarr;</a>
-    </footer>
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/09/16/mei-di-b1-slash-b2lu-you-shang-wu-10nian-qian-zong-jie/" title="Previous Post: 美帝B1/B2旅游商务10年签总结">&laquo; 美帝B1/B2旅游商务10年签总结</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'sobugou';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.sobugou.com/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/';
+        var disqus_url = 'http://www.sobugou.com/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -355,6 +347,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -369,7 +362,10 @@
       var disqus_shortname = 'sobugou';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.sobugou.com/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/';
+        var disqus_url = 'http://www.sobugou.com/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
