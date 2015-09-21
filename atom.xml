@@ -4,7 +4,7 @@
   <title><![CDATA[搜不狗]]></title>
   <link href="http://www.sobugou.com/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-21T20:46:00+02:00</updated>
+  <updated>2015-09-21T21:00:59+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -443,6 +443,51 @@ You can use the iterator remove() function to remove the object from underlying 
 </span><span class='line'>  <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<blockquote><p>List Value:1</p>
+
+<p>List Value:2</p>
+
+<p>List Value:3</p>
+
+<p>List Value:4</p>
+
+<p>List Value:5</p>
+
+<p>List Size:6</p>
+
+<p>Map Value:1</p>
+
+<p>Map Value:null</p>
+
+<p>Map Value:4</p>
+
+<p>Map Value:2</p>
+
+<p>Map Size:4</p></blockquote>
+
+<p>From the above example its clear that:</p>
+
+<ol>
+<li><p>Concurrent Collection classes can be modified avoiding ConcurrentModificationException.</p></li>
+<li><p>In case of CopyOnWriteArrayList, iterator doesn’t accomodate the changes in the list and works on the original list.</p></li>
+</ol>
+
+
+<p>观察结果输出了1 2 3 4 5</p>
+
+<p>而不是 1 2 3 5 6 7</p>
+
+<p>说明了在运行时候，迭代器不会自适应迭代CopyOnWriteArrayList的变化，而是记录了修改之前的原始值。</p>
+
+<ol>
+<li>In case of ConcurrentHashMap, the behavior is not always the same.</li>
+</ol>
+
+
+<p>ConcurrentHashMap结果不稳定？</p>
+
+<p>So if you are using ConcurrentHashMap then avoid adding new objects as it can be processed depending on the keyset. Note that the same program can print different values in your system because HashMap keyset is not in any order.</p>
 
 <h2>参考链接</h2>
 
