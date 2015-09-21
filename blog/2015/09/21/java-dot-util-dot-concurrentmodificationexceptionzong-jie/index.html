@@ -361,19 +361,15 @@ directly.</p></blockquote>
 <p>To Avoid ConcurrentModificationException in single-threaded environment:
 You can use the iterator remove() function to remove the object from underlying collection object. But in this case you can remove the same object and not any other object from the list.</p>
 
-<h1>进阶：ConcurrentHashMap</h1>
+<h2>进阶：multi-threaded场景</h2>
 
 <p>在互联网的世界难免高并发，并发的情况下上面的方法还可以吗？ 显然是不行的。根据之前的分析，Iterator 在工作的时候是不允许被迭代的对象被改变的。计算我们在自己的线程里面用了Iterator.remove()也不能保证其他线程去修改这个被迭代的对象（集合）。</p>
 
 <p>To Avoid ConcurrentModificationException in multi-threaded environment:</p>
 
-<blockquote><ol>
-<li>You can convert the list to an array and then iterate on the array. This approach works well for <strong>small or medium size</strong> list but if the list is large then it will affect the performance a lot.
-因为创建数组需要预留空间，成本很搞。而且数组查找容易O(1)，但是做修改不容易O(n)。</li>
-</ol>
-</blockquote>
-
 <ol>
+<li><p>You can convert the list to an array and then iterate on the array. This approach works well for <strong>small or medium size</strong> list but if the list is large then it will affect the performance a lot.
+因为创建数组需要预留空间，成本很搞。而且数组查找容易O(1)，但是做修改不容易O(n)。</p></li>
 <li><p>You can lock the list while iterating by putting it in a synchronized block. This approach is <strong>NOT</strong> recommended because it will cease the benefits of multithreading.</p></li>
 <li><p>If you are using JDK1.5 or higher then you can use <strong>ConcurrentHashMap</strong> and <strong>CopyOnWriteArrayList</strong> classes. It is the recommended approach.</p></li>
 </ol>
@@ -513,27 +509,38 @@ You can use the iterator remove() function to remove the object from underlying 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote><p>List Value:1</p>
 
-<p>List Value:2</p>
 
-<p>List Value:3</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'> <span class="n">List</span> <span class="nl">Value:</span><span class="mi">1</span>
+</span><span class='line'>  <span class="n">List</span> <span class="nl">Value:</span><span class="mi">2</span>
+</span><span class='line'>  <span class="n">List</span> <span class="nl">Value:</span><span class="mi">3</span>
+</span><span class='line'>  <span class="n">List</span> <span class="nl">Value:</span><span class="mi">4</span>
+</span><span class='line'>  <span class="n">List</span> <span class="nl">Value:</span><span class="mi">5</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">List</span> <span class="nl">Size:</span><span class="mi">6</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">Map</span> <span class="nl">Value:</span><span class="mi">1</span>
+</span><span class='line'>  <span class="n">Map</span> <span class="nl">Value:</span><span class="kc">null</span>
+</span><span class='line'>  <span class="n">Map</span> <span class="nl">Value:</span><span class="mi">4</span>
+</span><span class='line'>  <span class="n">Map</span> <span class="nl">Value:</span><span class="mi">2</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">Map</span> <span class="nl">Size:</span><span class="mi">4</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>List Value:4</p>
-
-<p>List Value:5</p>
-
-<p>List Size:6</p>
-
-<p>Map Value:1</p>
-
-<p>Map Value:null</p>
-
-<p>Map Value:4</p>
-
-<p>Map Value:2</p>
-
-<p>Map Size:4</p></blockquote>
 
 <p>From the above example its clear that:</p>
 
