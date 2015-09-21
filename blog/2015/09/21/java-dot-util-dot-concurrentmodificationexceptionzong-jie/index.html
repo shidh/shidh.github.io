@@ -550,17 +550,22 @@ You can use the iterator remove() function to remove the object from underlying 
 <p>说明了在运行时候，迭代器不会自适应迭代CopyOnWriteArrayList的变化，而是记录了修改之前的原始值。</p>
 
 <ol>
-<li>In case of ConcurrentHashMap, the behavior is not always the same.</li>
+<li>In case of ConcurrentHashMap, the behavior is not always the same.
+ConcurrentHashMap结果不稳定？</li>
 </ol>
 
 
-<p>ConcurrentHashMap结果不稳定？</p>
+<h2>ConcurrentHashMap</h2>
 
-<p>So if you are using ConcurrentHashMap then avoid adding new objects as it can be processed depending on the keyset. Note that the same program can print different values in your system because HashMap keyset is not in any order.</p>
+<p>ConcurrentHashMap还是需要有空再专门开一篇博客总结。这里先引用一个结论。</p>
+
+<blockquote><p>So if you are using ConcurrentHashMap then avoid adding new objects as it can be processed depending on the keyset. Note that the same program can print different values in your system because HashMap keyset is not in any order.</p></blockquote>
 
 <h2>参考链接</h2>
 
-<p><a href="http://www.javacodegeeks.com/2011/05/avoid-concurrentmodificationexception.html#ixzz1plFiXfzz">http://www.javacodegeeks.com/2011/05/avoid-concurrentmodificationexception.html#ixzz1plFiXfzz</a></p>
+<p>带栗子的英文文章，很清晰<a href="http://www.javacodegeeks.com/2011/05/avoid-concurrentmodificationexception.html#ixzz1plFiXfzz">http://www.javacodegeeks.com/2011/05/avoid-concurrentmodificationexception.html#ixzz1plFiXfzz</a></p>
+
+<p>一篇比较详细的中文解释 <a href="http://www.cnblogs.com/dolphin0520/p/3933551.html">http://www.cnblogs.com/dolphin0520/p/3933551.html</a></p>
 
 <p><a href="http://stackoverflow.com/questions/19702461/java-util-concurrentmodificationexception-in-for-loop">http://stackoverflow.com/questions/19702461/java-util-concurrentmodificationexception-in-for-loop</a></p>
 
