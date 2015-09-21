@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>java.util.ConcurrentModificationException总结 - 搜不狗</title>
+  <title>java.util.ConcurrentModification Exception总结 - 搜不狗</title>
   <meta name="author" content="Allen Shi">
 
   
-  <meta name="description" content="Exception描述 今天又一次发现这个bug，印象原来有发生过这个问题，但是当时没有细细总结现在又发生了。这次就好好总结下，深入理解其中的原理。 java.util.ConcurrentModificationException at java.util.ArrayList$ &hellip;">
+  <meta name="description" content="初探 Exception描述 今天又一次发现这个bug，印象原来有发生过这个问题，但是当时没有细细总结现在又发生了。这次就好好总结下，深入理解其中的原理。 java.util.ConcurrentModificationException at java.util.ArrayList$ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">java.util.ConcurrentModificationException总结</h1>
+      <h1 class="entry-title">java.util.ConcurrentModification Exception总结</h1>
     
     
       <p class="meta">
@@ -87,7 +87,9 @@
   </header>
 
 
-<div class="entry-content"><h2>Exception描述</h2>
+<div class="entry-content"><h1>初探</h1>
+
+<h2>Exception描述</h2>
 
 <p>今天又一次发现这个bug，印象原来有发生过这个问题，但是当时没有细细总结现在又发生了。这次就好好总结下，深入理解其中的原理。</p>
 
@@ -180,7 +182,7 @@
 </span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">failure</span><span class="o">(</span><span class="n">RetrofitError</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>          <span class="c1">//handle the error</span>
 </span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">};</span>
+</span><span class='line'>  <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -189,7 +191,7 @@
 <!--more-->
 
 
-<h2>现象</h2>
+<h2>从现象到原理</h2>
 
 <p>这是一个<strong>遍历List<ItemMessage>的同时</strong>，判断条件然后对List进行<strong>修改</strong>。
 我们测试代码结果，</p>
@@ -263,6 +265,7 @@
 <span class='line-number'>60</span>
 <span class='line-number'>61</span>
 <span class='line-number'>62</span>
+<span class='line-number'>63</span>
 </pre></td><td class='code'><pre><code class='Java'><span class='line'>    <span class="c1">//A counter for changes to the list.</span>
 </span><span class='line'>    <span class="kd">protected</span> <span class="kd">transient</span> <span class="kt">int</span> <span class="n">modCount</span><span class="o">;</span>
 </span><span class='line'>
@@ -299,6 +302,9 @@
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>    <span class="c1">//而ArrayList的私有类 ArrayListIterator的remove是这样实现的</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">//保证了modCount和expectedModCount的值的一致性，避免抛出ConcurrentModificationException异常</span>
+</span><span class='line'>
 </span><span class='line'>        <span class="kd">private</span> <span class="kd">class</span> <span class="nc">ArrayListIterator</span> <span class="kd">implements</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
 </span><span class='line'>        <span class="c1">//Number of elements remaining in this iteration</span>
 </span><span class='line'>        <span class="kd">private</span> <span class="kt">int</span> <span class="n">remaining</span> <span class="o">=</span> <span class="n">size</span><span class="o">;</span>
@@ -323,33 +329,57 @@
 </span><span class='line'>            <span class="n">removalIndex</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
 </span><span class='line'>            <span class="n">expectedModCount</span> <span class="o">=</span> <span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
 </span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">//保证了modCount和expectedModCount的值的一致性，避免抛出ConcurrentModificationException异常  </span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>dsdsd</p>
-
 <h2>StackOverFlow一些解释</h2>
 
-<p>Java Collection classes are fail-fast which means that if the Collection will be changed while some thread is traversing over it using iterator, the iterator.next() will throw a ConcurrentModificationException.</p>
+<blockquote><p>Java Collection classes are fail-fast which means that if the Collection will be changed while some thread is traversing over it using iterator, the iterator.next() will throw a ConcurrentModificationException.</p>
 
 <p>This situation can come in case of multithreaded as well as single threaded environment.
 更具体的例子看<a href="http://www.javacodegeeks.com/2011/05/avoid-concurrentmodificationexception.html#ixzz1plFiXfzz">这里</a></p>
 
 <p>You can&rsquo;t modify a List in a for/each loop, which is syntactic sugar around the Iterator as an implementation detail. You can only safely call .remove() when using the Iterator
-directly.</p>
-
-<blockquote><p>Iterator 是工作在一个独立的线程中，并且拥有一个 mutex 锁。 Iterator 被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则 Iterator 会马上抛出 java.util.ConcurrentModificationException 异常。
-所以 Iterator 在工作的时候是不允许被迭代的对象被改变的。但你可以使用 Iterator 本身的方法 remove() 来删除对象， Iterator.remove() 方法会在删除当前迭代对象的同时维护索引的一致性。</p></blockquote>
-
-<p>结论就是不能用被迭代对象的remove()方法，而可以用Iterator.remove().</p>
+directly.</p></blockquote>
 
 <h2>fail-fast机制</h2>
 
+<p>从API中可以看到List等Collection的实现并没有同步化，如果在多 线程应用程序中出现同时访问，而且出现修改操作的时候都要求外部操作同步化；调用Iterator操作获得的Iterator对象在多线程修改Set的时 候也自动失效，并抛出java.util.ConcurrentModificationException。这种实现机制是fail-fast，对外部 的修改并不能提供任何保证。</p>
+
+<p>Iterator 是工作在一个独立的线程中，并且拥有一个 mutex 锁。Iterator在工作的时候，是不允许被迭代的对象被改变的。</p>
+
+<p>Iterator被创建的时候，建立了一个内存索引表（单链表），这个索引表指向原来的对象，当原来的对象数量改变的时候，这个索引表的内容没有同步改变，所以当索引指针往下移动的时候，便找不到要迭代的对象，所以按照 fail-fast 原则 Iterator 会马上抛出 java.util.ConcurrentModificationException 异常。</p>
+
+<p>List、Set等是动态的，可变对象数量的数据结构，但是Iterator则是单向不可变，只能顺序读取，不能逆序操作的数据结构，当 Iterator指向的原始数据发生变化时，Iterator自己就迷失了方向。</p>
+
+<p>所以 Iterator 在工作的时候是不允许被迭代的对象被改变的，但你可以使用 Iterator 本身的方法 remove() 来删除对象， Iterator.remove() 方法会在删除当前迭代对象的同时维护索引的一致性。</p>
+
+<h2>结论</h2>
+
+<p>不能用被迭代对象的remove()方法，而可以用Iterator.remove().</p>
+
+<p>To Avoid ConcurrentModificationException in single-threaded environment:
+You can use the iterator remove() function to remove the object from underlying collection object. But in this case you can remove the same object and not any other object from the list.</p>
+
 <h1>进阶：ConcurrentHashMap</h1>
 
-<p>在互联网的世界难免高并发，并发的情况下上面的讨论还正确吗？</p>
+<p>在互联网的世界难免高并发，并发的情况下上面的方法还可以吗？ 显然是不行的。根据之前的分析，Iterator 在工作的时候是不允许被迭代的对象被改变的。计算我们在自己的线程里面用了Iterator.remove()也不能保证其他线程去修改这个被迭代的对象（集合）。</p>
+
+<p>To Avoid ConcurrentModificationException in multi-threaded environment:</p>
+
+<blockquote><ol>
+<li>You can convert the list to an array and then iterate on the array. This approach works well for <strong>small or medium size</strong> list but if the list is large then it will affect the performance a lot.
+因为创建数组需要预留空间，成本很搞。而且数组查找容易O(1)，但是做修改不容易O(n)。</li>
+</ol>
+</blockquote>
+
+<ol>
+<li><p>You can lock the list while iterating by putting it in a synchronized block. This approach is <strong>NOT</strong> recommended because it will cease the benefits of multithreading.</p></li>
+<li><p>If you are using JDK1.5 or higher then you can use <strong>ConcurrentHashMap</strong> and <strong>CopyOnWriteArrayList</strong> classes. It is the recommended approach.</p></li>
+</ol>
+
+
+<h2>同步代码块</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -367,6 +397,117 @@ directly.</p>
 </span><span class='line'>          <span class="k">if</span><span class="o">(</span><span class="n">del</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">str</span><span class="o">))</span> <span class="o">{</span>
 </span><span class='line'>               <span class="n">iterator</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
 </span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>synchronized语句还需要复习下，再抽机会总结吧。</p>
+
+<h2>java.util.concurrent包</h2>
+
+<p>举个栗子：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+</pre></td><td class='code'><pre><code class='Java'><span class='line'>
+</span><span class='line'>  <span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="o">;</span>
+</span><span class='line'>  <span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+</span><span class='line'>  <span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+</span><span class='line'>  <span class="kn">import</span> <span class="nn">java.util.concurrent.ConcurrentHashMap</span><span class="o">;</span>
+</span><span class='line'>  <span class="kn">import</span> <span class="nn">java.util.concurrent.CopyOnWriteArrayList</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadSafeIteratorExample</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>              <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">myList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CopyOnWriteArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>
+</span><span class='line'>              <span class="n">myList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">myList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;2&quot;</span><span class="o">);</span>
+</span><span class='line'>              <span class="n">myList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;3&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">myList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;4&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">myList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;5&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">myList</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+</span><span class='line'>               <span class="k">while</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+</span><span class='line'>                   <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span><span class='line'>                   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;List Value:&quot;</span><span class="o">+</span><span class="n">value</span><span class="o">);</span>
+</span><span class='line'>              <span class="k">if</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;3&quot;</span><span class="o">)){</span>
+</span><span class='line'>                    <span class="n">myList</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="s">&quot;4&quot;</span><span class="o">);</span>
+</span><span class='line'>                    <span class="n">myList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;6&quot;</span><span class="o">);</span>
+</span><span class='line'>                   <span class="n">myList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;7&quot;</span><span class="o">);</span>
+</span><span class='line'>              <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;List Size:&quot;</span><span class="o">+</span><span class="n">myList</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">myMap</span> <span class="o">=</span>
+</span><span class='line'>             <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>          <span class="n">myMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="s">&quot;1&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">myMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;2&quot;</span><span class="o">,</span> <span class="s">&quot;2&quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">myMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;3&quot;</span><span class="o">,</span> <span class="s">&quot;3&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">it1</span> <span class="o">=</span> <span class="n">myMap</span><span class="o">.</span><span class="na">keySet</span><span class="o">().</span><span class="na">iterator</span><span class="o">();</span>
+</span><span class='line'>          <span class="k">while</span><span class="o">(</span><span class="n">it1</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+</span><span class='line'>              <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="n">it1</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span><span class='line'>              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Map Value:&quot;</span><span class="o">+</span><span class="n">myMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">));</span>
+</span><span class='line'>              <span class="k">if</span><span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">)){</span>
+</span><span class='line'>                  <span class="n">myMap</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="s">&quot;3&quot;</span><span class="o">);</span>
+</span><span class='line'>                  <span class="n">myMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;4&quot;</span><span class="o">,</span> <span class="s">&quot;4&quot;</span><span class="o">);</span>
+</span><span class='line'>                  <span class="n">myMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;5&quot;</span><span class="o">,</span> <span class="s">&quot;5&quot;</span><span class="o">);</span>
+</span><span class='line'>              <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>           <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Map Size:&quot;</span><span class="o">+</span><span class="n">myMap</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
 </span><span class='line'>      <span class="o">}</span>
 </span><span class='line'>  <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -468,7 +609,7 @@ directly.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">java.util.ConcurrentModificationException总结</a>
+        <a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">java.util.ConcurrentModification Exception总结</a>
       </li>
     
       <li class="post">

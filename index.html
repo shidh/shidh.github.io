@@ -9,7 +9,7 @@
   <meta name="author" content="Allen Shi">
 
   
-  <meta name="description" content="Exception描述 今天又一次发现这个bug，印象原来有发生过这个问题，但是当时没有细细总结现在又发生了。这次就好好总结下，深入理解其中的原理。 java.util.ConcurrentModificationException at java.util.ArrayList$ &hellip;">
+  <meta name="description" content="初探 Exception描述 今天又一次发现这个bug，印象原来有发生过这个问题，但是当时没有细细总结现在又发生了。这次就好好总结下，深入理解其中的原理。 java.util.ConcurrentModificationException at java.util.ArrayList$ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +71,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">java.util.ConcurrentModificationException总结</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">java.util.ConcurrentModification Exception总结</a></h1>
     
     
       <p class="meta">
@@ -90,7 +90,9 @@
   </header>
 
 
-  <div class="entry-content"><h2>Exception描述</h2>
+  <div class="entry-content"><h1>初探</h1>
+
+<h2>Exception描述</h2>
 
 <p>今天又一次发现这个bug，印象原来有发生过这个问题，但是当时没有细细总结现在又发生了。这次就好好总结下，深入理解其中的原理。</p>
 
@@ -183,7 +185,7 @@
 </span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">failure</span><span class="o">(</span><span class="n">RetrofitError</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>          <span class="c1">//handle the error</span>
 </span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">};</span>
+</span><span class='line'>  <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -283,7 +285,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">java.util.ConcurrentModificationException总结</a>
+        <a href="/blog/2015/09/21/java-dot-util-dot-concurrentmodificationexceptionzong-jie/">java.util.ConcurrentModification Exception总结</a>
       </li>
     
       <li class="post">
