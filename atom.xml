@@ -4,7 +4,7 @@
   <title><![CDATA[搜不狗]]></title>
   <link href="http://www.sobugou.com/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-22T11:41:53+02:00</updated>
+  <updated>2015-09-22T14:19:52+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -100,11 +100,11 @@
 </span><span class='line'>
 </span><span class='line'>          <span class="c1">//Right</span>
 </span><span class='line'>          <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">itemMessages</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
-</span><span class='line'>             <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getItemId</span><span class="o">()</span> <span class="o">==</span> <span class="n">currentItemId</span><span class="o">){</span>
-</span><span class='line'>                 <span class="n">ItemMessage</span> <span class="n">item</span> <span class="o">=</span> <span class="n">itemMessages</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-</span><span class='line'>                 <span class="n">itemMessages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
-</span><span class='line'>             <span class="o">}</span>
+</span><span class='line'>              <span class="k">if</span><span class="o">(</span><span class="n">itemMessages</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">getItemId</span><span class="o">()</span> <span class="o">==</span> <span class="n">currentItemId</span><span class="o">){</span>
+</span><span class='line'>                  <span class="n">itemMessages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'>              <span class="o">}</span>
 </span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>         <span class="c1">//wrong</span>
 </span><span class='line'>         <span class="n">ListIterator</span><span class="o">&lt;</span><span class="n">ItemMessage</span><span class="o">&gt;</span> <span class="n">itWrong</span> <span class="o">=</span> <span class="n">itemMessages</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
