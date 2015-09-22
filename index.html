@@ -150,15 +150,33 @@
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
 </pre></td><td class='code'><pre><code class='Java'><span class='line'>    <span class="n">Callback</span><span class="o">&lt;</span><span class="n">ItemMessage</span><span class="o">&gt;</span> <span class="n">deleteCallback</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Callback</span><span class="o">&lt;</span><span class="n">ItemMessage</span><span class="o">&gt;()</span> <span class="o">{</span>
 </span><span class='line'>        <span class="nd">@Override</span>
 </span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">success</span><span class="o">(</span><span class="n">ItemMessage</span> <span class="n">item</span><span class="o">,</span> <span class="n">Response</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>             <span class="c1">//wrong </span>
-</span><span class='line'>             <span class="k">for</span><span class="o">(</span><span class="n">ItemMessage</span> <span class="nl">i:</span><span class="n">itemMessages</span><span class="o">){</span>
-</span><span class='line'>                <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getItemId</span><span class="o">()</span> <span class="o">==</span> <span class="n">currentItemId</span><span class="o">){</span>
-</span><span class='line'>                    <span class="n">itemMessages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-</span><span class='line'>                <span class="o">}</span>
+</span><span class='line'>          <span class="c1">//wrong </span>
+</span><span class='line'>          <span class="c1">//This foreach loop creates an Iterator object in the background.</span>
+</span><span class='line'>          <span class="k">for</span><span class="o">(</span><span class="n">ItemMessage</span> <span class="nl">i:</span><span class="n">itemMessages</span><span class="o">){</span>
+</span><span class='line'>             <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getItemId</span><span class="o">()</span> <span class="o">==</span> <span class="n">currentItemId</span><span class="o">){</span>
+</span><span class='line'>                 <span class="n">itemMessages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 </span><span class='line'>             <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="c1">//Right</span>
+</span><span class='line'>          <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">itemMessages</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+</span><span class='line'>             <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getItemId</span><span class="o">()</span> <span class="o">==</span> <span class="n">currentItemId</span><span class="o">){</span>
+</span><span class='line'>                 <span class="n">ItemMessage</span> <span class="n">item</span> <span class="o">=</span> <span class="n">itemMessages</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'>                 <span class="n">itemMessages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+</span><span class='line'>             <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>         <span class="c1">//wrong</span>
 </span><span class='line'>         <span class="n">ListIterator</span><span class="o">&lt;</span><span class="n">ItemMessage</span><span class="o">&gt;</span> <span class="n">itWrong</span> <span class="o">=</span> <span class="n">itemMessages</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>

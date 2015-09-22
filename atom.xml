@@ -4,7 +4,7 @@
   <title><![CDATA[搜不狗]]></title>
   <link href="http://www.sobugou.com/atom.xml" rel="self"/>
   <link href="http://www.sobugou.com/"/>
-  <updated>2015-09-21T21:15:52+02:00</updated>
+  <updated>2015-09-22T11:41:53+02:00</updated>
   <id>http://www.sobugou.com/</id>
   <author>
     <name><![CDATA[Allen Shi]]></name>
@@ -78,15 +78,33 @@
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
 </pre></td><td class='code'><pre><code class='Java'><span class='line'>    <span class="n">Callback</span><span class="o">&lt;</span><span class="n">ItemMessage</span><span class="o">&gt;</span> <span class="n">deleteCallback</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Callback</span><span class="o">&lt;</span><span class="n">ItemMessage</span><span class="o">&gt;()</span> <span class="o">{</span>
 </span><span class='line'>        <span class="nd">@Override</span>
 </span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">success</span><span class="o">(</span><span class="n">ItemMessage</span> <span class="n">item</span><span class="o">,</span> <span class="n">Response</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>             <span class="c1">//wrong </span>
-</span><span class='line'>             <span class="k">for</span><span class="o">(</span><span class="n">ItemMessage</span> <span class="nl">i:</span><span class="n">itemMessages</span><span class="o">){</span>
-</span><span class='line'>                <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getItemId</span><span class="o">()</span> <span class="o">==</span> <span class="n">currentItemId</span><span class="o">){</span>
-</span><span class='line'>                    <span class="n">itemMessages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-</span><span class='line'>                <span class="o">}</span>
+</span><span class='line'>          <span class="c1">//wrong </span>
+</span><span class='line'>          <span class="c1">//This foreach loop creates an Iterator object in the background.</span>
+</span><span class='line'>          <span class="k">for</span><span class="o">(</span><span class="n">ItemMessage</span> <span class="nl">i:</span><span class="n">itemMessages</span><span class="o">){</span>
+</span><span class='line'>             <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getItemId</span><span class="o">()</span> <span class="o">==</span> <span class="n">currentItemId</span><span class="o">){</span>
+</span><span class='line'>                 <span class="n">itemMessages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 </span><span class='line'>             <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="c1">//Right</span>
+</span><span class='line'>          <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">itemMessages</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+</span><span class='line'>             <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">getItemId</span><span class="o">()</span> <span class="o">==</span> <span class="n">currentItemId</span><span class="o">){</span>
+</span><span class='line'>                 <span class="n">ItemMessage</span> <span class="n">item</span> <span class="o">=</span> <span class="n">itemMessages</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'>                 <span class="n">itemMessages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+</span><span class='line'>             <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>         <span class="c1">//wrong</span>
 </span><span class='line'>         <span class="n">ListIterator</span><span class="o">&lt;</span><span class="n">ItemMessage</span><span class="o">&gt;</span> <span class="n">itWrong</span> <span class="o">=</span> <span class="n">itemMessages</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
@@ -128,9 +146,10 @@
 我们测试代码结果，</p>
 
 <ul>
-<li>用for循环是会触发java.util.ConcurrentModificationException，</li>
-<li>用ListIterator遍历，但是当用依然调用List的remove()方法的时候还是会出现java.util.ConcurrentModificationException</li>
-<li>用ListIterator遍历，同时用ListIterator的remove()方法不会出现这个问题。</li>
+<li><p>用Iterator遍历，但是当用依然调用List的remove()方法的时候还是会出现java.util.ConcurrentModificationException</p></li>
+<li><p>用for(i:dataList)循环是会触发java.util.ConcurrentModificationException，因为foreach loop 会自动默默创建一个Iterator。</p></li>
+<li><p>用for(int i = 0; i&lt;itemMessages.size(); i++)遍历可以避免这个问题。</p></li>
+<li><p>用Iterator遍历，同时用ListIterator的remove()方法不会出现这个问题。</p></li>
 </ul>
 
 
